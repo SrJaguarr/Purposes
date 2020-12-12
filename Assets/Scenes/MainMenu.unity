@@ -371,7 +371,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1516623824}
-        m_MethodName: OpenMainCanvas
+        m_MethodName: ShowMainHideCreation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1190,7 +1190,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1516623824}
-        m_MethodName: OpenCreationCanvas
+        m_MethodName: ShowCreationHideMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1422,6 +1422,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7273f45d2f4d42d4da9bc1783bfa3a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  achievementPrefab: {fileID: 8836719097676530319, guid: 3b8e29b180bfed84abe3bcb38844259a,
+    type: 3}
+  verticalLayout: {fileID: 4238466857357520780}
 --- !u!4 &1403761169
 Transform:
   m_ObjectHideFlags: 0
@@ -1531,9 +1534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfbf824e922db3340be4321b3c2a2796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementPrefab: {fileID: 8836719097676530319, guid: 3b8e29b180bfed84abe3bcb38844259a,
-    type: 3}
-  verticalLayout: {fileID: 4238466857357520780}
   creationCanvas: {fileID: 492836116}
   mainCanvas: {fileID: 1718582783}
 --- !u!4 &1516623825

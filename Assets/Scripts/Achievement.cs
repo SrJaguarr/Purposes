@@ -7,14 +7,12 @@ public class Achievement
     private int id;
     private readonly string name;
     private readonly string description;
-    private ButtonAchievement buttonAchievement;
 
-    public Achievement(int newID, string newName, string newDescription, ButtonAchievement newButton)
+    public Achievement(int newID, string newName, string newDescription)
     {
         id                = newID;
         name              = newName;
         description       = newDescription;
-        buttonAchievement = newButton;
     }
 
     public string GetName()

@@ -44,13 +44,15 @@ public class AchievementManager : MonoBehaviour
     public void NewAchievement(string name, string desc)
     {
         ButtonAchievement button = AddButtonAchievement(achievements.Count, name, desc);
-        achievements.Add(new Achievement(achievements.Count, name, desc, button));
+        button.SetID(achievements.Count);
+        achievements.Add(new Achievement(achievements.Count, name, desc));
     }
 
     public void ReloadAchievement(AchievementData data, int n)
     {
         ButtonAchievement button = AddButtonAchievement(achievements.Count, data.name[n], data.description[n]);
-        achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n], button));
+        button.SetID(achievements.Count);
+        achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n]));
     }
 
     public void SaveAchievements()
