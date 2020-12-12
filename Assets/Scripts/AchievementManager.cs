@@ -1,12 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class AchievementManager : MonoBehaviour
 {
     public static AchievementManager _instance;
     public List<Achievement> achievements = new List<Achievement>();
+
+    [SerializeField]
+    GameObject achievementPrefab;
+
+    [SerializeField]
+    Transform verticalLayout;
+
+    GameObject blankText;
 
     private void Awake()
     {
@@ -24,13 +32,25 @@ public class AchievementManager : MonoBehaviour
 
     private void Start()
     {
-        LoadAchievementButtons();
+        blankText = verticalLayout.GetChild(0).gameObject;
     }
 
+    private void Update()
+    {
+        IsListEmpty();
+    }
 
+    
     public void NewAchievement(string name, string desc)
     {
-        achievements.Add(new Achievement(achievements.Count, name, desc));
+        ButtonAchievement button = AddButtonAchievement(achievements.Count, name, desc);
+        achievements.Add(new Achievement(achievements.Count, name, desc, button));
+    }
+
+    public void ReloadAchievement(AchievementData data, int n)
+    {
+        ButtonAchievement button = AddButtonAchievement(achievements.Count, data.name[n], data.description[n]);
+        achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n], button));
     }
 
     public void SaveAchievements()
@@ -38,7 +58,7 @@ public class AchievementManager : MonoBehaviour
         print(this.achievements.Count);
         SaveSystem.SaveProgress(this);
     }
-
+    
     public void LoadAchievements()
     {
         if(SaveSystem.LoadAchievements() != null)
@@ -47,22 +67,44 @@ public class AchievementManager : MonoBehaviour
             AchievementData data = SaveSystem.LoadAchievements();
             for (int i = 0; i < data.name.Length; i++)
             {
-                achievements.Add(new Achievement(data.id[i], data.name[i], data.description[i]));
+                ReloadAchievement(data, i);
             }
         }
     }
-
-    private void LoadAchievementButtons()
+    
+    public ButtonAchievement AddButtonAchievement(int id, string n, string d)
     {
-        for(int i = 0; i < achievements.Count; i++)
-        {
-            CanvasManager._instance.AddButtonAchievement(achievements[i].GetName(), achievements[i].GetID().ToString());
-        }
+        achievementPrefab.transform.GetChild(0).GetComponent<Text>().text = n;                         //NOMBRE
+        achievementPrefab.transform.GetChild(1).GetComponent<Text>().text = d;                         //DESCRIPTION
+        achievementPrefab.transform.GetChild(2).GetComponent<Text>().text = "ID: " + id.ToString();      //ID
+
+        return Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>();
     }
 
     public void RemoveAchievement(int id)
     {
         achievements.Remove(achievements[id]);
+        ReorderList();
         SaveAchievements();
+    }
+
+    private void IsListEmpty()
+    {
+        if (verticalLayout.childCount == 1)
+        {
+            blankText.SetActive(true);
+        }
+        else
+        {
+            blankText.SetActive(false);
+        }
+    }
+
+    private void ReorderList()
+    {
+        for(int i = 0; i < achievements.Count; i++)
+        {
+            achievements[i].SetID(i);
+        }
     }
 }

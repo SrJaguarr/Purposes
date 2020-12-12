@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Achievement
 {
-    private readonly int id;
+    private int id;
     private readonly string name;
     private readonly string description;
+    private ButtonAchievement buttonAchievement;
 
-    public Achievement(int newID, string newName, string newDescription)
+    public Achievement(int newID, string newName, string newDescription, ButtonAchievement newButton)
     {
-        id          = newID;
-        name        = newName;
-        description = newDescription;
+        id                = newID;
+        name              = newName;
+        description       = newDescription;
+        buttonAchievement = newButton;
     }
 
     public string GetName()
@@ -29,4 +31,6 @@ public class Achievement
     {
         return id;
     }
+
+    public void SetID(int i) => id = i;
 }

@@ -21,8 +21,6 @@ public class AchievementCreator : MonoBehaviour
         newAchievementDescription = inputDescription.GetComponent<InputField>().text;
 
         AchievementManager._instance.NewAchievement(newAchievementName, newAchievementDescription);
-        CanvasManager._instance.AddButtonAchievement(newAchievementName, newAchievementDescription);
-
         AchievementManager._instance.SaveAchievements();
     }
 
