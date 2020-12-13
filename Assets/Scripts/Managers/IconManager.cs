@@ -12,8 +12,6 @@ public class IconManager : MonoBehaviour
     public Transform iconLayout;
     public GameObject iconButton;
 
-    public Text testingText;
-
     private GameObject[] iconButtonArray;
 
     int defaultIconID;
@@ -42,7 +40,6 @@ public class IconManager : MonoBehaviour
         for(int i = 0; i < iconButtonArray.Length; i++)
         {
             iconButton.GetComponent<Image>().sprite = _dbInstance.icons[i].sprite;
-            iconButton.transform.GetChild(0).GetComponent<Text>().text = _dbInstance.icons[i].id.ToString();
             iconButton.GetComponent<IconButton>().SetID(_dbInstance.icons[i].id);
 
             iconButtonArray[i] = Instantiate(iconButton, iconLayout);

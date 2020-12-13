@@ -14,6 +14,8 @@ public class AchievementManager : MonoBehaviour
     [SerializeField]
     Transform verticalLayout;
 
+    List<ButtonAchievement> achievementButtons = new List<ButtonAchievement>();
+
     GameObject blankText;
 
     private void Awake()
@@ -43,21 +45,20 @@ public class AchievementManager : MonoBehaviour
     
     public void NewAchievement(string name, string desc, int icon)
     {
-        ButtonAchievement button = AddButtonAchievement(achievements.Count, name, desc, icon);
-        button.SetID(achievements.Count);
+        achievementButtons.Add(AddButtonAchievement(achievements.Count, name, desc, icon));
+        achievementButtons[achievements.Count].SetID(achievements.Count);
         achievements.Add(new Achievement(achievements.Count, name, desc, icon));
     }
 
     public void ReloadAchievement(AchievementData data, int n)
     {
-        ButtonAchievement button = AddButtonAchievement(achievements.Count, data.name[n], data.description[n], data.iconID[n]);
-        button.SetID(achievements.Count);
+        achievementButtons.Add(AddButtonAchievement(achievements.Count, data.name[n], data.description[n], data.iconID[n]));
+        achievementButtons[achievements.Count].SetID(achievements.Count);
         achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n], data.iconID[n]));
     }
 
     public void SaveAchievements()
     {
-        print(this.achievements.Count);
         SaveSystem.SaveProgress(this);
     }
     
@@ -87,6 +88,7 @@ public class AchievementManager : MonoBehaviour
     public void RemoveAchievement(int id)
     {
         achievements.Remove(achievements[id]);
+        achievementButtons.Remove(achievementButtons[id]);
         ReorderList();
         SaveAchievements();
     }
@@ -108,6 +110,7 @@ public class AchievementManager : MonoBehaviour
         for(int i = 0; i < achievements.Count; i++)
         {
             achievements[i].SetID(i);
+            achievementButtons[i].SetID(i);
         }
     }
 }
