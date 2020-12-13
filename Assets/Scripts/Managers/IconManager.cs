@@ -16,6 +16,8 @@ public class IconManager : MonoBehaviour
 
     private GameObject[] iconButtonArray;
 
+    int defaultIconID;
+
     private void Awake()
     {
         if (_instance == null)
@@ -31,6 +33,7 @@ public class IconManager : MonoBehaviour
     private void Start()
     {
         iconButtonArray = new GameObject[_dbInstance.icons.Length];
+        defaultIconID = 0;
         SetIconCanvas();
     }
 
@@ -48,7 +51,25 @@ public class IconManager : MonoBehaviour
 
     public void SetIconID(int id)
     {
-        testingText.text = id.ToString();
+        defaultIconID = id;
+    }
+
+    public int GetIconID()
+    {
+        return defaultIconID;
+    }
+
+    public Sprite GetIconByID(int ico)
+    {
+        Sprite sprite;
+        int i = 0;
+        while (!(_dbInstance.icons[i].id == ico))
+        {
+            i++;
+        }
+        sprite = _dbInstance.icons[i].sprite;
+
+        return sprite;
     }
     
 }

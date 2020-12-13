@@ -9,12 +9,12 @@ public class Achievement
     private readonly string description;
     private int iconID;
 
-    public Achievement(int newID, string newName, string newDescription)
+    public Achievement(int newID, string newName, string newDescription, int newIconID)
     {
         id                = newID;
         name              = newName;
         description       = newDescription;
-        //iconID            = newiconID;
+        iconID            = newIconID;
     }
 
     public string GetName()
@@ -33,4 +33,9 @@ public class Achievement
     }
 
     public void SetID(int i) => id = i;
+
+    public int GetIconID()
+    {
+        return iconID;
+    }
 }

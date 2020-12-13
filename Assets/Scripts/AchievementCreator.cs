@@ -12,20 +12,19 @@ public class AchievementCreator : MonoBehaviour
     [SerializeField]
     GameObject inputDescription;
 
+    int iconID;
 
     string newAchievementName;
     string newAchievementDescription;
 
-    public void SetIconID()
-    {
-    }
-
     public void StoreValues()
     {
+        iconID = IconManager._instance.GetIconID();
+
         newAchievementName = inputName.GetComponent<InputField>().text;
         newAchievementDescription = inputDescription.GetComponent<InputField>().text;
 
-        AchievementManager._instance.NewAchievement(newAchievementName, newAchievementDescription);
+        AchievementManager._instance.NewAchievement(newAchievementName, newAchievementDescription, iconID);
         AchievementManager._instance.SaveAchievements();
     }
 

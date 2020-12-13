@@ -41,18 +41,18 @@ public class AchievementManager : MonoBehaviour
     }
 
     
-    public void NewAchievement(string name, string desc)
+    public void NewAchievement(string name, string desc, int icon)
     {
-        ButtonAchievement button = AddButtonAchievement(achievements.Count, name, desc);
+        ButtonAchievement button = AddButtonAchievement(achievements.Count, name, desc, icon);
         button.SetID(achievements.Count);
-        achievements.Add(new Achievement(achievements.Count, name, desc));
+        achievements.Add(new Achievement(achievements.Count, name, desc, icon));
     }
 
     public void ReloadAchievement(AchievementData data, int n)
     {
-        ButtonAchievement button = AddButtonAchievement(achievements.Count, data.name[n], data.description[n]);
+        ButtonAchievement button = AddButtonAchievement(achievements.Count, data.name[n], data.description[n], data.iconID[n]);
         button.SetID(achievements.Count);
-        achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n]));
+        achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n], data.iconID[n]));
     }
 
     public void SaveAchievements()
@@ -74,11 +74,12 @@ public class AchievementManager : MonoBehaviour
         }
     }
     
-    public ButtonAchievement AddButtonAchievement(int id, string n, string d)
+    public ButtonAchievement AddButtonAchievement(int id, string n, string d, int ico)
     {
         achievementPrefab.transform.GetChild(0).GetComponent<Text>().text = n;                         //NOMBRE
         achievementPrefab.transform.GetChild(1).GetComponent<Text>().text = d;                         //DESCRIPTION
         achievementPrefab.transform.GetChild(2).GetComponent<Text>().text = "ID: " + id.ToString();      //ID
+        achievementPrefab.transform.GetChild(3).GetComponent<Image>().sprite = IconManager._instance.GetIconByID(ico);      //ICON
 
         return Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>();
     }
