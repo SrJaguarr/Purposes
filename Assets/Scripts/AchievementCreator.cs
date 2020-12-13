@@ -12,8 +12,13 @@ public class AchievementCreator : MonoBehaviour
     [SerializeField]
     GameObject inputDescription;
 
+
     string newAchievementName;
     string newAchievementDescription;
+
+    public void SetIconID()
+    {
+    }
 
     public void StoreValues()
     {

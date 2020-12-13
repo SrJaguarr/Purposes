@@ -7,12 +7,14 @@ public class Achievement
     private int id;
     private readonly string name;
     private readonly string description;
+    private int iconID;
 
     public Achievement(int newID, string newName, string newDescription)
     {
         id                = newID;
         name              = newName;
         description       = newDescription;
+        //iconID            = newiconID;
     }
 
     public string GetName()
