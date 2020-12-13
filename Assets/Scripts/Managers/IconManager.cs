@@ -14,7 +14,7 @@ public class IconManager : MonoBehaviour
 
     private GameObject[] iconButtonArray;
 
-    int defaultIconID;
+    public int defaultIconID = 0;
 
     private void Awake()
     {
@@ -31,8 +31,8 @@ public class IconManager : MonoBehaviour
     private void Start()
     {
         iconButtonArray = new GameObject[_dbInstance.icons.Length];
-        defaultIconID = 0;
         SetIconCanvas();
+        iconButtonArray[defaultIconID].GetComponent<IconButton>().Hover();
     }
 
     private void SetIconCanvas()
@@ -43,7 +43,7 @@ public class IconManager : MonoBehaviour
             iconButton.GetComponent<IconButton>().SetID(_dbInstance.icons[i].id);
 
             iconButtonArray[i] = Instantiate(iconButton, iconLayout);
-        } 
+        }
     }
 
     public void SetIconID(int id)

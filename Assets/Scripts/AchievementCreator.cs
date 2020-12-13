@@ -28,5 +28,10 @@ public class AchievementCreator : MonoBehaviour
         AchievementManager._instance.SaveAchievements();
     }
 
+    private void OnEnable()
+    {
+        inputName.GetComponent<InputField>().text = null;
+        inputDescription.GetComponent<InputField>().text = null;
+    }
 
 }

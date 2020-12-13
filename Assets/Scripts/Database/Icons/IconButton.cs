@@ -7,13 +7,7 @@ public class IconButton : MonoBehaviour
 {
     public int id;
 
-    GameObject hover;
     IconManager iconManager = IconManager._instance;
-
-    private void Start()
-    {
-        hover = transform.GetChild(0).gameObject;
-    }
 
     public void SetID(int i)
     {
@@ -27,13 +21,13 @@ public class IconButton : MonoBehaviour
 
     public void Hover()
     {
-        hover.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(true);
         iconManager.UnhoverAllButThis(id);
     }
 
     public void Unhover()
     {
-        hover.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public int GetID()
