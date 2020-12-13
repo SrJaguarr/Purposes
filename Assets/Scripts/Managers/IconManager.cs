@@ -56,6 +56,18 @@ public class IconManager : MonoBehaviour
         return defaultIconID;
     }
 
+    public void UnhoverAllButThis(int id)
+    {
+        for(int i = 0; i < iconButtonArray.Length; i++)
+        {
+            IconButton currentButton = iconButtonArray[i].GetComponent<IconButton>();
+            if (currentButton.GetID() != id)
+            {
+                currentButton.Unhover();
+            }
+        }
+    }
+
     public Sprite GetIconByID(int ico)
     {
         Sprite sprite;

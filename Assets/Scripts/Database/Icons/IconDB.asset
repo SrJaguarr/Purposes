@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4858ac428f053146ac01ca8e966b0e7, type: 3}
   m_Name: IconDB
   m_EditorClassIdentifier: 
-  icons: []
+  icons:
+  - id: 0
+    sprite: {fileID: 21300000, guid: f2f8b528032aeb8429f6b799300e734f, type: 3}
+  - id: 1
+    sprite: {fileID: 21300000, guid: e44db478416dafc4a8094d37ba552686, type: 3}
+  - id: 2
+    sprite: {fileID: 21300000, guid: 33be64203a96f584d856d0ba664d633a, type: 3}

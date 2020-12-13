@@ -6,7 +6,15 @@ using UnityEngine.UI;
 public class IconButton : MonoBehaviour
 {
     public int id;
-    
+
+    GameObject hover;
+    IconManager iconManager = IconManager._instance;
+
+    private void Start()
+    {
+        hover = transform.GetChild(0).gameObject;
+    }
+
     public void SetID(int i)
     {
         id = i;
@@ -14,12 +22,23 @@ public class IconButton : MonoBehaviour
 
     public void SetIconID()
     {
-        IconManager._instance.SetIconID(this.id);
+        iconManager.SetIconID(this.id);
     }
 
     public void Hover()
     {
-        print(transform.GetChild(0).GetComponent<Image>().sprite);
-        transform.GetChild(0).GetComponent<Image>().enabled = true;
+        hover.SetActive(true);
+        iconManager.UnhoverAllButThis(id);
     }
+
+    public void Unhover()
+    {
+        hover.SetActive(false);
+    }
+
+    public int GetID()
+    {
+        return id;
+    }
+
 }
