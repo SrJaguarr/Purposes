@@ -92,10 +92,11 @@ public class AchievementManager : MonoBehaviour
         achievementButtons.Remove(b);
     }
 
-    public void RemoveAchievement(int id)
+    public void RemoveAchievement(ButtonAchievement aButton)
     {
-        achievements.Remove(achievements[id]);
-        achievementButtons.Remove(achievementButtons[id]);
+        print(aButton.GetAchievement());
+        achievements.Remove(aButton.GetAchievement());
+        achievementButtons.Remove(aButton);
         ReorderList();
         SaveAchievements();
     }

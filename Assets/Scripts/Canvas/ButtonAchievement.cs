@@ -30,7 +30,7 @@ public class ButtonAchievement : MonoBehaviour
 
     public void DeleteButton()
     {
-        AchievementManager._instance.RemoveAchievement(achievement.GetID());
+        AchievementManager._instance.RemoveAchievement(this);
         Destroy(this.transform.gameObject);
     }
 
@@ -147,4 +147,7 @@ public class ButtonAchievement : MonoBehaviour
         CanvasManager._instance.ShowEdition();
         AchievementCreator._instance.EditAchievement(achievement);
     }
+
+
+    public Achievement GetAchievement() { return achievement; }
 }

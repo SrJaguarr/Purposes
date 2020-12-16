@@ -145,6 +145,7 @@ public class Achievement
                 }
                 break;
         }
+        Debug.Log(res);
         return res;
     }
 
