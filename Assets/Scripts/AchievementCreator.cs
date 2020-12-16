@@ -5,27 +5,45 @@ using UnityEngine.UI;
 
 public class AchievementCreator : MonoBehaviour
 {
-
     [SerializeField]
     GameObject inputName;
 
     [SerializeField]
     GameObject inputDescription;
 
-    int iconID;
+    [SerializeField]
+    GameObject inputRepetitions;
 
-    string newAchievementName;
-    string newAchievementDescription;
+    [SerializeField]
+    GameObject inputReward;
+
+    [SerializeField]
+    GameObject inputNumerOf;
+
+    int    achievementIcon;
+    string achievementName;
+    string achievementDescription;
+    int    achievementRepetitions;
+    int    achievementNumberOf;
+    int    achievementType;
+    string achievementAward;
 
     public void StoreValues()
     {
-        iconID = IconManager._instance.GetIconID();
+        achievementIcon        = IconManager._instance.GetIconID();
+        achievementName        = inputName.GetComponent<InputField>().text;
+        achievementDescription = inputDescription.GetComponent<InputField>().text;
+        achievementRepetitions = int.Parse(inputRepetitions.GetComponent<InputField>().text);
+        achievementNumberOf    = int.Parse(inputNumerOf.GetComponent<InputField>().text);
+        achievementAward       = inputReward.GetComponent<InputField>().text;
 
-        newAchievementName = inputName.GetComponent<InputField>().text;
-        newAchievementDescription = inputDescription.GetComponent<InputField>().text;
-
-        AchievementManager._instance.NewAchievement(newAchievementName, newAchievementDescription, iconID);
+        AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon);
         AchievementManager._instance.SaveAchievements();
+    }
+
+    public void SetType(int i)
+    {
+        achievementType = i;
     }
 
     private void OnEnable()

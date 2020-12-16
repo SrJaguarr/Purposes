@@ -8,6 +8,9 @@ public class CanvasManager : MonoBehaviour
     public GameObject creationCanvas;
     public GameObject mainCanvas;
     public GameObject iconPanel;
+    public GameObject typePanel;
+    [SerializeField]
+    GameObject typePanelArrow;
 
     public void ShowCreationHideMain()
     {
@@ -29,5 +32,20 @@ public class CanvasManager : MonoBehaviour
     public void HideIconPanel()
     {
         iconPanel.SetActive(false);
+    }
+
+    public void ShowTypePanel()
+    {
+        if (!typePanel.activeSelf)
+        {
+            typePanel.SetActive(true);
+            typePanelArrow.transform.rotation = new Quaternion(0, 0, 180,0);
+        }
+        else
+        {
+            typePanel.SetActive(false);
+            typePanelArrow.transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
+        
     }
 }
