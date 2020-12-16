@@ -1688,12 +1688,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MaxSize: 60
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
@@ -2273,9 +2273,9 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1417129054}
-  m_TextComponent: {fileID: 1287561613}
-  m_Placeholder: {fileID: 1410240546}
+  m_TargetGraphic: {fileID: 556511160}
+  m_TextComponent: {fileID: 821774564}
+  m_Placeholder: {fileID: 257956003}
   m_ContentType: 0
   m_InputType: 0
   m_AsteriskChar: 42
@@ -2492,9 +2492,9 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1417129054}
-  m_TextComponent: {fileID: 1287561613}
-  m_Placeholder: {fileID: 1410240546}
+  m_TargetGraphic: {fileID: 710254815}
+  m_TextComponent: {fileID: 1412861803}
+  m_Placeholder: {fileID: 779019356}
   m_ContentType: 0
   m_InputType: 0
   m_AsteriskChar: 42
@@ -2616,7 +2616,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 72
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2940,7 +2940,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
@@ -3557,7 +3557,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 66
-    m_Alignment: 5
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -4429,8 +4429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 37.79, y: -3.7}
-  m_SizeDelta: {x: -348.78552, y: -29.133423}
+  m_AnchoredPosition: {x: 37.79, y: -1.4398}
+  m_SizeDelta: {x: -348.78552, y: -60.23462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1287561613
 MonoBehaviour:
@@ -5007,12 +5007,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 68
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MaxSize: 68
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
@@ -6645,9 +6645,9 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1417129054}
-  m_TextComponent: {fileID: 1287561613}
-  m_Placeholder: {fileID: 1410240546}
+  m_TargetGraphic: {fileID: 2010723836}
+  m_TextComponent: {fileID: 365026165}
+  m_Placeholder: {fileID: 997928400}
   m_ContentType: 0
   m_InputType: 0
   m_AsteriskChar: 42
