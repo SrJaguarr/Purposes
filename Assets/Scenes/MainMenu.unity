@@ -290,7 +290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &73331698
 RectTransform:
   m_ObjectHideFlags: 0
@@ -647,7 +647,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 137766901}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1516623824}
+        m_MethodName: ShowIconPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &137766901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,7 +776,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 186137814}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1516623824}
+        m_MethodName: HideIconPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &186137814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1401,7 +1423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &345745076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1520,7 +1542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &352276158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3412,7 +3434,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.5, y: -0.000061035156}
-  m_SizeDelta: {x: 1, y: -1088.0237}
+  m_SizeDelta: {x: 1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1122309318
 MonoBehaviour:
@@ -3722,8 +3744,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dbInstance: {fileID: 11400000, guid: aacf683e0150abc429159e6dc1f94f31, type: 2}
   iconLayout: {fileID: 1378655064}
-  iconButton: {fileID: 137766898}
+  iconButton: {fileID: 7427364872246253515, guid: 62538f099da81ab4cb5dd366b67b8f86,
+    type: 3}
   iconPreview: {fileID: 1873309123}
+  iconButtonForm: {fileID: 50003215}
   defaultIconID: 0
 --- !u!4 &1271734698
 Transform:
@@ -4013,9 +4037,9 @@ RectTransform:
   m_Father: {fileID: 1122309317}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 534.5, y: -404}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 989, y: 248}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1379325796
@@ -4948,6 +4972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creationCanvas: {fileID: 345745075}
   mainCanvas: {fileID: 352276157}
+  iconPanel: {fileID: 73331697}
 --- !u!4 &1516623825
 Transform:
   m_ObjectHideFlags: 0

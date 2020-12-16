@@ -12,6 +12,9 @@ public class IconManager : MonoBehaviour
     public Transform iconLayout;
     public GameObject iconButton;
 
+    public GameObject iconPreview;
+    public GameObject iconButtonForm;
+
     private GameObject[] iconButtonArray;
 
     public int defaultIconID = 0;
@@ -49,6 +52,8 @@ public class IconManager : MonoBehaviour
     public void SetIconID(int id)
     {
         defaultIconID = id;
+        iconPreview.GetComponent<Image>().sprite = _dbInstance.icons[id].sprite;
+        iconButtonForm.GetComponent<Image>().sprite = _dbInstance.icons[id].sprite;
     }
 
     public int GetIconID()

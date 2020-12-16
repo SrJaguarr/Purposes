@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject creationCanvas;
-
-    [SerializeField]
-    GameObject mainCanvas;
+    public GameObject creationCanvas;
+    public GameObject mainCanvas;
+    public GameObject iconPanel;
 
     public void ShowCreationHideMain()
     {
@@ -21,5 +19,15 @@ public class CanvasManager : MonoBehaviour
     {
         mainCanvas.SetActive(true);
         creationCanvas.SetActive(false);
+    }
+
+    public void ShowIconPanel()
+    {
+        iconPanel.SetActive(true);
+    }
+
+    public void HideIconPanel()
+    {
+        iconPanel.SetActive(false);
     }
 }
