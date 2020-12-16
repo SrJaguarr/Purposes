@@ -82,6 +82,11 @@ public class AchievementManager : MonoBehaviour
         achievementPrefab.transform.GetChild(2).GetComponent<Text>().text = "ID: " + id.ToString();      //ID
         achievementPrefab.transform.GetChild(3).GetComponent<Image>().sprite = IconManager._instance.GetIconByID(ico);      //ICON
 
+        Vector2 newOffset = new Vector2(0, achievementPrefab.GetComponent<RectTransform>().rect.height / 2);
+
+        verticalLayout.gameObject.GetComponent<RectTransform>().offsetMax += newOffset;
+        verticalLayout.gameObject.GetComponent<RectTransform>().offsetMin += newOffset;
+
         return Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>();
     }
 
