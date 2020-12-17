@@ -5,13 +5,28 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    public static CanvasManager _instance;
+
     public GameObject creationCanvas;
     public GameObject mainCanvas;
     public GameObject iconPanel;
     public GameObject typePanel;
+
     [SerializeField]
     GameObject typePanelArrow;
 
+
+    private void Awake()
+    {
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     public void ShowCreationHideMain()
     {
         mainCanvas.SetActive(false);

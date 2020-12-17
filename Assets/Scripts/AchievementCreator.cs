@@ -6,19 +6,15 @@ using UnityEngine.UI;
 public class AchievementCreator : MonoBehaviour
 {
     [SerializeField]
-    GameObject inputName;
+    GameObject inputName, inputDescription, inputRepetitions, inputReward, inputNumerOf;
 
     [SerializeField]
-    GameObject inputDescription;
+    GameObject labelAdjective, labelSingular, labelPlural;
 
     [SerializeField]
-    GameObject inputRepetitions;
+    Transform asterisks;
 
-    [SerializeField]
-    GameObject inputReward;
-
-    [SerializeField]
-    GameObject inputNumerOf;
+    public TypeDatabase _typeDBInstance;
 
     int    achievementIcon;
     string achievementName;
@@ -27,29 +23,139 @@ public class AchievementCreator : MonoBehaviour
     int    achievementNumberOf;
     int    achievementType;
     string achievementAward;
+    bool   canConfirm;
 
+    Text textAdjective, textSingular, textPlural;
+
+    private void Start()
+    {
+        canConfirm = true;
+        textAdjective = labelAdjective.GetComponent<Text>();
+        textSingular = labelSingular.GetComponent<Text>();
+        textPlural = labelPlural.GetComponent<Text>();
+    }
     public void StoreValues()
     {
+        DisableAsterisks();
+        canConfirm = true; 
+
+        achievementName        = CheckNullString(inputName.GetComponent<InputField>().text);
+        achievementDescription = CheckNullString(inputDescription.GetComponent<InputField>().text);
+
+        achievementRepetitions = CheckNullInt(inputRepetitions.GetComponent<InputField>().text);
+        achievementNumberOf    = CheckNullInt(inputNumerOf.GetComponent<InputField>().text);
+
+        achievementAward       = CheckNullUndefined(inputReward.GetComponent<InputField>().text);
         achievementIcon        = IconManager._instance.GetIconID();
+
+        /*
         achievementName        = inputName.GetComponent<InputField>().text;
         achievementDescription = inputDescription.GetComponent<InputField>().text;
         achievementRepetitions = int.Parse(inputRepetitions.GetComponent<InputField>().text);
         achievementNumberOf    = int.Parse(inputNumerOf.GetComponent<InputField>().text);
-        achievementAward       = inputReward.GetComponent<InputField>().text;
+            
+        achievementAward      = inputReward.GetComponent<InputField>().text;
+        */
 
-        AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon);
-        AchievementManager._instance.SaveAchievements();
+        if (canConfirm)
+        {
+            CanvasManager._instance.ShowMainHideCreation();
+            AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon);
+            AchievementManager._instance.SaveAchievements();
+        }
+        else
+        {
+            CheckAsterisk();
+        }
+    }
+
+    private int CheckNullInt(string text)
+    {
+        if(text != "")
+        {
+            return int.Parse(text);
+        }
+        else
+        {
+            canConfirm = false;
+            return -1;
+        }
+    }
+
+    private string CheckNullString(string text)
+    {
+        if (text != "")
+        {
+            return text;
+        }
+        else
+        {
+            canConfirm = false;
+            return null;
+        }
+    }
+
+    private string CheckNullUndefined(string text)
+    {
+        if (text != "")
+        {
+            return text;
+        }
+        else
+        {
+           return "Sin definir";
+        }
+    }
+
+    private void CheckAsterisk()
+    {
+        if(achievementName == null)
+        {
+            asterisks.GetChild(0).gameObject.SetActive(true);
+        }
+
+        if(achievementDescription == null)
+        {
+            asterisks.GetChild(1).gameObject.SetActive(true);
+        }
+
+        if(achievementRepetitions < 0)
+        {
+            asterisks.GetChild(2).gameObject.SetActive(true);
+        }
+
+        if (achievementNumberOf < 0)
+        {
+            asterisks.GetChild(3).gameObject.SetActive(true);
+        }
+    }
+
+    private void DisableAsterisks()
+    {
+        for(int i = 0; i < asterisks.childCount; i++)
+        {
+            asterisks.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     public void SetType(int i)
     {
         achievementType = i;
+
+        textAdjective.text = _typeDBInstance.types[i].adjetivo;
+        textSingular.text  = "Repeticiones por " + _typeDBInstance.types[i].singular;
+        textPlural.text    = "Número de " + _typeDBInstance.types[i].plural;
     }
+
 
     private void OnEnable()
     {
+        canConfirm = true;
         inputName.GetComponent<InputField>().text = null;
         inputDescription.GetComponent<InputField>().text = null;
+        inputNumerOf.GetComponent<InputField>().text = null;
+        inputRepetitions.GetComponent<InputField>().text = null;
+        inputReward.GetComponent<InputField>().text = null;
     }
 
 }
