@@ -512,7 +512,7 @@ MonoBehaviour:
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
-  m_LineType: 0
+  m_LineType: 1
   m_HideMobileInput: 0
   m_CharacterValidation: 0
   m_CharacterLimit: 105
@@ -521,7 +521,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 345745080}
+        m_MethodName: DescriptionCharCounter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 105
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -1504,8 +1515,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 350.5, y: 74.318}
-  m_SizeDelta: {x: 113.705444, y: 43.227066}
+  m_AnchoredPosition: {x: 337.7, y: 74.318}
+  m_SizeDelta: {x: 142.22668, y: 43.227066}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338927199
 MonoBehaviour:
@@ -1539,7 +1550,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: (0/105)
+  m_Text: (105/105)
 --- !u!222 &338927200
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1675,6 +1686,8 @@ MonoBehaviour:
   labelSingular: {fileID: 211972931}
   labelPlural: {fileID: 1333869148}
   asterisks: {fileID: 1327437045}
+  TitleCounter: {fileID: 2061822445}
+  DescriptionCounter: {fileID: 338927199}
   _typeDBInstance: {fileID: 11400000, guid: dc63cd2791550a54c9334163592c77d4, type: 2}
 --- !u!1 &352276157
 GameObject:
@@ -3725,8 +3738,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -19.299988, y: -32.600037}
-  m_SizeDelta: {x: -90.84613, y: -162.51343}
+  m_AnchoredPosition: {x: -19.299988, y: -40.2}
+  m_SizeDelta: {x: -90.84613, y: -125.48132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075953158
 MonoBehaviour:
@@ -5258,7 +5271,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 345745080}
+        m_MethodName: TitleCharCounter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 23
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -6778,8 +6802,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -19.299988, y: -32.600037}
-  m_SizeDelta: {x: -90.84613, y: -162.51343}
+  m_AnchoredPosition: {x: -19.299988, y: -40.2}
+  m_SizeDelta: {x: -90.84613, y: -125.48132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836841679
 MonoBehaviour:
@@ -6810,7 +6834,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
   m_Text: 

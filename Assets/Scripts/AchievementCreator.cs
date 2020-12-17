@@ -14,6 +14,9 @@ public class AchievementCreator : MonoBehaviour
     [SerializeField]
     Transform asterisks;
 
+    [SerializeField]
+    Text TitleCounter, DescriptionCounter;
+
     public TypeDatabase _typeDBInstance;
 
     int    achievementIcon;
@@ -174,7 +177,17 @@ public class AchievementCreator : MonoBehaviour
         inputReward.GetComponent<InputField>().text = null;
     }
 
+    public void TitleCharCounter(int max)
+    {
+        int counter = inputName.GetComponent<InputField>().text.Length;
+        TitleCounter.text = "(" + counter + "/" + max + ")"; 
+    }
 
+    public void DescriptionCharCounter(int max)
+    {
+        int counter = inputDescription.GetComponent<InputField>().text.Length;
+        DescriptionCounter.text = "(" + counter + "/" + max + ")";
+    }
 
 
 }
