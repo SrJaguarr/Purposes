@@ -19,21 +19,37 @@ MonoBehaviour:
     plural: "d\xEDas"
     defaultRepetitions: 2
     defaultNumberOf: 365
+    maxRepetitions: 999
+    maxNumberOf: 365
+    maxRepetitionsCaracter: 3
+    maxNumberOfCaracter: 3
   - id: 1
     adjetivo: Semanal
     singular: semana
     plural: semanas
     defaultRepetitions: 7
     defaultNumberOf: 4
+    maxRepetitions: 7
+    maxNumberOf: 52
+    maxRepetitionsCaracter: 1
+    maxNumberOfCaracter: 2
   - id: 2
     adjetivo: Mensual
     singular: mes
     plural: meses
     defaultRepetitions: 30
     defaultNumberOf: 12
+    maxRepetitions: 30
+    maxNumberOf: 12
+    maxRepetitionsCaracter: 2
+    maxNumberOfCaracter: 2
   - id: 3
     adjetivo: Anual
     singular: "a\xF1o"
     plural: "a\xF1os"
     defaultRepetitions: 12
     defaultNumberOf: 1
+    maxRepetitions: 999
+    maxNumberOf: 100
+    maxRepetitionsCaracter: 3
+    maxNumberOfCaracter: 3

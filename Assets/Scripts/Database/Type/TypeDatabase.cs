@@ -15,4 +15,8 @@ public class TypeData
     public string plural;
     public int defaultRepetitions;
     public int defaultNumberOf;
+    public int maxRepetitions;
+    public int maxNumberOf;
+    public int maxRepetitionsCaracter;
+    public int maxNumberOfCaracter;
 }
