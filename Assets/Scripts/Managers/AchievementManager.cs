@@ -45,16 +45,19 @@ public class AchievementManager : MonoBehaviour
     
     public void NewAchievement(string name, string desc, int icon)
     {
-        achievementButtons.Add(AddButtonAchievement(achievements.Count, name, desc, icon));
+        achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
         achievementButtons[achievements.Count].SetID(achievements.Count);
         achievements.Add(new Achievement(achievements.Count, name, desc, icon));
+        achievementButtons[achievements.Count-1].InitializeButton();
     }
 
     public void ReloadAchievement(AchievementData data, int n)
     {
-        achievementButtons.Add(AddButtonAchievement(achievements.Count, data.name[n], data.description[n], data.iconID[n]));
+        print(achievements.Count);
+        achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
         achievementButtons[achievements.Count].SetID(achievements.Count);
         achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n], data.iconID[n]));
+        achievementButtons[achievements.Count-1].InitializeButton();
     }
 
     public void SaveAchievements()
@@ -73,21 +76,6 @@ public class AchievementManager : MonoBehaviour
                 ReloadAchievement(data, i);
             }
         }
-    }
-    
-    public ButtonAchievement AddButtonAchievement(int id, string n, string d, int ico)
-    {
-        achievementPrefab.transform.GetChild(0).GetComponent<Text>().text = n;                         //NOMBRE
-        achievementPrefab.transform.GetChild(1).GetComponent<Text>().text = d;                         //DESCRIPTION
-        achievementPrefab.transform.GetChild(2).GetComponent<Text>().text = "ID: " + id.ToString();      //ID
-        achievementPrefab.transform.GetChild(3).GetComponent<Image>().sprite = IconManager._instance.GetIconByID(ico);      //ICON
-
-        Vector2 newOffset = new Vector2(0, achievementPrefab.GetComponent<RectTransform>().rect.height / 2);
-
-        verticalLayout.gameObject.GetComponent<RectTransform>().offsetMax += newOffset;
-        verticalLayout.gameObject.GetComponent<RectTransform>().offsetMin += newOffset;
-
-        return Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>();
     }
 
     public void RemoveAchievement(int id)
