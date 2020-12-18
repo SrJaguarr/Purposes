@@ -15,6 +15,9 @@ public class ButtonAchievement : MonoBehaviour
     [SerializeField]
     GameObject ProgressBar;
 
+    [SerializeField]
+    Button AddButton;
+
     Vector2 barSize;
     float totalBarSize;
 
@@ -34,6 +37,12 @@ public class ButtonAchievement : MonoBehaviour
         LabelProgress.text = achievement.GetProgress().ToString();
         ResizeProgressBar();
         SaveSystem.SaveProgress(AchievementManager._instance);
+
+        if (achievement.GetProgress() == achievement.GetGoal())
+        {
+            AddButton.interactable = false;
+        }
+
     }
 
     public void InitializeButton()

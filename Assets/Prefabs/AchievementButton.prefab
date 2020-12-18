@@ -866,6 +866,7 @@ MonoBehaviour:
   LabelGoal: {fileID: 1066727458262796519}
   SpriteIcon: {fileID: 5901046378072761062}
   ProgressBar: {fileID: 7504300723697575692}
+  AddButton: {fileID: 7405370667377264940}
 --- !u!1 &7454115183869279784
 GameObject:
   m_ObjectHideFlags: 0
