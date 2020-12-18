@@ -7,10 +7,16 @@ public class ButtonAchievement : MonoBehaviour
 {
     int id;
     [SerializeField]
-    Text LabelTitle, LabelDescription, LabelID;
+    Text LabelTitle, LabelDescription, LabelID, LabelProgress, LabelGoal;
 
     [SerializeField]
     GameObject SpriteIcon;
+
+    [SerializeField]
+    GameObject ProgressBar;
+
+    Vector2 barSize;
+    float totalBarSize;
 
     Achievement achievement;
 
@@ -22,6 +28,14 @@ public class ButtonAchievement : MonoBehaviour
 
     public void SetID(int i) => id = i;
 
+    public void AddProgress()
+    {
+        achievement.AddProgress();
+        LabelProgress.text = achievement.GetProgress().ToString();
+        ResizeProgressBar();
+        SaveSystem.SaveProgress(AchievementManager._instance);
+    }
+
     public void InitializeButton()
     {
         achievement = AchievementManager._instance.achievements[id];
@@ -30,6 +44,17 @@ public class ButtonAchievement : MonoBehaviour
         LabelDescription.text = achievement.GetDescription();                         //DESCRIPTION
         LabelID.text = "ID: " + achievement.GetID();      //ID
         SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
+        LabelGoal.text = achievement.GetGoal().ToString();
+        LabelProgress.text = achievement.GetProgress().ToString();
+        totalBarSize = ProgressBar.GetComponent<RectTransform>().sizeDelta.x;
+        ResizeProgressBar();
     }
 
+    private void ResizeProgressBar()
+    {
+        barSize = ProgressBar.GetComponent<RectTransform>().sizeDelta;
+        barSize.x = ((100 * achievement.GetProgress() / achievement.GetGoal()) * totalBarSize) / 100;
+
+        ProgressBar.GetComponent<RectTransform>().sizeDelta = barSize;
+    }
 }

@@ -25,7 +25,7 @@ public class AchievementCreator : MonoBehaviour
     int    achievementRepetitions;
     int    achievementNumberOf;
     int    achievementType;
-    string achievementAward;
+    string achievementReward;
     bool   canConfirm;
 
     Text textAdjective, textSingular, textPlural;
@@ -49,13 +49,15 @@ public class AchievementCreator : MonoBehaviour
         achievementRepetitions = CheckNullInt(inputRepetitions.GetComponent<InputField>().text);
         achievementNumberOf    = CheckNullInt(inputNumerOf.GetComponent<InputField>().text);
 
-        achievementAward       = CheckNullUndefined(inputReward.GetComponent<InputField>().text);
+        achievementReward       = CheckNullUndefined(inputReward.GetComponent<InputField>().text);
         achievementIcon        = IconManager._instance.GetIconID();
 
         if (canConfirm)
         {
             CanvasManager._instance.ShowMainHideCreation();
-            AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon);
+            AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon, achievementType,
+                                                        achievementRepetitions, achievementNumberOf, achievementReward);
+
             AchievementManager._instance.SaveAchievements();
         }
         else

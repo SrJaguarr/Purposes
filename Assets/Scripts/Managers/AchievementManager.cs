@@ -43,20 +43,21 @@ public class AchievementManager : MonoBehaviour
     }
 
     
-    public void NewAchievement(string name, string desc, int icon)
+    public void NewAchievement(string name, string desc, int icon, int type, int reps, int number, string reward)
     {
         achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
         achievementButtons[achievements.Count].SetID(achievements.Count);
-        achievements.Add(new Achievement(achievements.Count, name, desc, icon));
+        achievements.Add(new Achievement(achievements.Count, name, desc, icon, type, reps, number, 0, reward));
         achievementButtons[achievements.Count-1].InitializeButton();
     }
 
     public void ReloadAchievement(AchievementData data, int n)
     {
-        print(achievements.Count);
         achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
         achievementButtons[achievements.Count].SetID(achievements.Count);
-        achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n], data.iconID[n]));
+        achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n], data.iconID[n], data.type[n],
+                                         data.repetitions[n], data.numberOf[n], data.progress[n], data.reward[n]));
+
         achievementButtons[achievements.Count-1].InitializeButton();
     }
 
