@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icons:
   - id: 0
-    sprite: {fileID: 21300000, guid: 0648aad1e4deecd49a05cfc672b9bf49, type: 3}
+    sprite: {fileID: 21300000, guid: 570ce91358eea274e837eb5360c69dc2, type: 3}
   - id: 1
     sprite: {fileID: 21300000, guid: db7ed0362c8e1ad4f905cfbce5abe482, type: 3}
   - id: 2
@@ -22,6 +22,28 @@ MonoBehaviour:
   - id: 3
     sprite: {fileID: 21300000, guid: ca3eab18a9c1e9d4a9561605c675dfaa, type: 3}
   - id: 4
-    sprite: {fileID: 21300000, guid: 570ce91358eea274e837eb5360c69dc2, type: 3}
+    sprite: {fileID: 21300000, guid: 0648aad1e4deecd49a05cfc672b9bf49, type: 3}
   - id: 5
     sprite: {fileID: 21300000, guid: 628cce99c80721040b71c29410460dac, type: 3}
+  - id: 6
+    sprite: {fileID: 21300000, guid: eb398096cfd32094aa47f19967797ee6, type: 3}
+  - id: 7
+    sprite: {fileID: 21300000, guid: ed8b5520ca196854db57689febd0cc7b, type: 3}
+  - id: 8
+    sprite: {fileID: 21300000, guid: 783cf748febaede41a1d079b4d814567, type: 3}
+  - id: 9
+    sprite: {fileID: 21300000, guid: 49fae06922059e940a4353ffea615ddc, type: 3}
+  - id: 10
+    sprite: {fileID: 21300000, guid: 01d4fed76d0de174a953e77656f6c173, type: 3}
+  - id: 11
+    sprite: {fileID: 21300000, guid: eb3c4afe655259047bb66bd634bf2843, type: 3}
+  - id: 12
+    sprite: {fileID: 21300000, guid: 8bee970749e2a3945be51b386ea250d7, type: 3}
+  - id: 13
+    sprite: {fileID: 21300000, guid: 81099c92313b6df408b5c216d10a9d13, type: 3}
+  - id: 14
+    sprite: {fileID: 21300000, guid: af351a05052de0d498a89b7b518d131e, type: 3}
+  - id: 15
+    sprite: {fileID: 21300000, guid: 5e325f11dc7bb7e4e8c5566d9e06fb5c, type: 3}
+  - id: 16
+    sprite: {fileID: 21300000, guid: 1429f5a87818ef44c9de8b8b7368ae39, type: 3}

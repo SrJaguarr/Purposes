@@ -37,12 +37,15 @@ public class ButtonAchievement : MonoBehaviour
         LabelProgress.text = achievement.GetProgress().ToString();
         ResizeProgressBar();
         SaveSystem.SaveProgress(AchievementManager._instance);
+        CheckProgress();
+    }
 
+    private void CheckProgress()
+    {
         if (achievement.GetProgress() == achievement.GetGoal())
         {
             AddButton.interactable = false;
         }
-
     }
 
     public void InitializeButton()
@@ -57,6 +60,7 @@ public class ButtonAchievement : MonoBehaviour
         LabelProgress.text = achievement.GetProgress().ToString();
         totalBarSize = ProgressBar.GetComponent<RectTransform>().sizeDelta.x;
         ResizeProgressBar();
+        CheckProgress();
     }
 
     private void ResizeProgressBar()
