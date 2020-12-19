@@ -9,15 +9,17 @@ public class Achievement
     private readonly string description;
     private readonly int iconID;
     private int goal;
-    private int progress;
+    private int globalProgress;
     private readonly string reward;
     private readonly int repetitions;
     private readonly int type;
     private readonly int numberOf;
+    private int progress;
+    System.DateTime dateTime;
+    System.DateTime creationTime;
 
-
-    public Achievement(int newID, string newName, string newDescription, int newIconID, int newType,
-                       int newRepetitions, int newNumberOf, int newProgress, string newReward)
+    public Achievement(int newID, string newName, string newDescription, int newIconID, int newType,int newRepetitions, 
+                       int newNumberOf, int newGlobalProgress, int newProgress, string newReward, System.DateTime newCreation)
     {
         id                = newID;
         name              = newName;
@@ -27,70 +29,48 @@ public class Achievement
         repetitions       = newRepetitions;
         numberOf          = newNumberOf;
         progress          = newProgress;
-        reward = newReward;
+        globalProgress    = newGlobalProgress;
+        reward            = newReward;
+        creationTime      = newCreation;          
 
         goal              = repetitions * numberOf;
     }
 
-    public string GetName()
-    {
-        return name;
-    }
+    public string GetName() { return name; }
 
-    public string GetDescription()
-    {
-        return description;
-    }
+    public string GetDescription() { return description; }
 
-    public int GetID()
-    {
-        return id;
-    }
+    public int GetID() { return id; }
 
     public void SetID(int i) => id = i;
 
-    public int GetIconID()
-    {
-        return iconID;
-    }
+    public int GetIconID() { return iconID; }
 
-    public int GetRepetitions()
-    {
-        return repetitions;
-    }
+    public int GetRepetitions() { return repetitions; }
 
-    public int GetNumberOf()
-    {
-        return numberOf;
-    }
+    public int GetNumberOf() { return numberOf; }
 
-    public int GetProgress()
-    {
-        return progress;
-    }
-
-    public void SetProgress(int n)
-    {
-        progress = n;
-    }
+    public int GetProgress() { return progress; }
 
     public void AddProgress()
     {
-        progress += 1;
+        progress ++;
+        globalProgress++;
     }
 
-    public string GetReward()
+    public string GetReward() { return reward; }
+
+    public int GetTypeOf() { return type; }
+
+    public int GetGoal() { return goal; }
+
+    public int GetGlobalProgress(){ return globalProgress; }
+
+    public System.DateTime GetCreationTime() { return creationTime; }
+
+    private void CheckTime()
     {
-        return reward;
+        //if(System.DateTime.Now.)
     }
 
-    public int GetTypeOf()
-    {
-        return type;
-    }
-
-    public int GetGoal()
-    {
-        return goal;
-    }
 }
