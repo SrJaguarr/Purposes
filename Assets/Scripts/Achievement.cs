@@ -16,10 +16,11 @@ public class Achievement
     private readonly int numberOf;
     private int progress;
     System.DateTime dateTime;
+    System.DateTime lastTime;
     System.DateTime creationTime;
 
     public Achievement(int newID, string newName, string newDescription, int newIconID, int newType,int newRepetitions, 
-                       int newNumberOf, int newGlobalProgress, int newProgress, string newReward, System.DateTime newCreation)
+                       int newNumberOf, int newGlobalProgress, int newProgress, string newReward, System.DateTime newCreation, System.DateTime newTime)
     {
         id                = newID;
         name              = newName;
@@ -31,8 +32,8 @@ public class Achievement
         progress          = newProgress;
         globalProgress    = newGlobalProgress;
         reward            = newReward;
-        creationTime      = newCreation;          
-
+        creationTime      = newCreation;
+        lastTime          = newTime;
         goal              = repetitions * numberOf;
     }
 
@@ -55,7 +56,10 @@ public class Achievement
     public void AddProgress()
     {
         progress ++;
-        globalProgress++;
+        if(progress == repetitions)
+        {
+            globalProgress++;
+        }
     }
 
     public string GetReward() { return reward; }
@@ -68,9 +72,66 @@ public class Achievement
 
     public System.DateTime GetCreationTime() { return creationTime; }
 
-    private void CheckTime()
+    public bool HasChangedTime()
     {
-        //if(System.DateTime.Now.)
+        bool res = false;
+
+        dateTime = System.DateTime.Now;
+        switch (type)
+        {
+            case 0:
+                if(dateTime.Date > lastTime.Date)
+                {
+                    if (progress < repetitions)
+                        globalProgress = 0;
+                    progress = 0;
+                    lastTime = dateTime;
+                    res = true;
+                    AchievementManager._instance.SaveAchievements();
+                }
+                break;
+            case 1:
+                if(dateTime.Date > lastTime.Date.AddDays(7))
+                {
+                    if (progress < repetitions)
+                        globalProgress = 0;
+                    progress = 0;
+                    lastTime = dateTime;
+                    res = true;
+                    AchievementManager._instance.SaveAchievements();
+                }
+                break;
+            case 2:
+                if (dateTime.Date > lastTime.Date.AddDays(30))
+                {
+                    if (progress < repetitions)
+                        globalProgress = 0;
+                    progress = 0;
+                    lastTime = dateTime;
+                    res = true;
+                    AchievementManager._instance.SaveAchievements();
+                }
+                break;
+            case 3:
+                if(dateTime.Year > lastTime.Year)
+                {
+                    if (dateTime.Date > lastTime.Date.AddDays(365))
+                    {
+                        if (progress < repetitions)
+                            globalProgress = 0;
+                        progress = 0;
+                        lastTime = dateTime;
+                        res = true;
+                        AchievementManager._instance.SaveAchievements();
+                    }
+                }
+                break;
+        }
+        return res;
     }
 
+    public System.DateTime GetLastTime()
+    {
+        return lastTime;
+    }
 }

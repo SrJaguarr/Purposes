@@ -7,7 +7,7 @@ public class ButtonAchievement : MonoBehaviour
 {
     int id;
     [SerializeField]
-    Text LabelTitle, LabelDescription, LabelID, LabelCreationTime;
+    Text LabelTitle, LabelDescription, LabelID, LabelCreationTime, LabelReward, LabelObjetivo, LabelRestantes, LabelProgreso;
 
     [SerializeField]
     GameObject SpriteIcon;
@@ -21,6 +21,8 @@ public class ButtonAchievement : MonoBehaviour
     [SerializeField]
     Button AddButton;
 
+    public TypeDatabase _typeDBInstance;
+
     Vector2 barSize;
     float totalBarSizeGlobal;
     float totalBarSize;
@@ -33,11 +35,24 @@ public class ButtonAchievement : MonoBehaviour
         Destroy(this.transform.gameObject);
     }
 
+    private void Update()
+    {
+        if (achievement.HasChangedTime())
+        {
+            UpdateInfo();
+        }
+    }
+
     public void SetID(int i) => id = i;
 
     public void AddProgress()
     {
         achievement.AddProgress();
+        UpdateInfo();
+    }
+
+    private void UpdateInfo()
+    {
         LabelProgress.text = achievement.GetProgress().ToString();
         LabelProgressTotal.text = achievement.GetGlobalProgress().ToString();
         ResizeProgressBar();
@@ -48,9 +63,13 @@ public class ButtonAchievement : MonoBehaviour
 
     private void CheckProgress()
     {
-        if (achievement.GetProgress() == achievement.GetGoal())
+        if (achievement.GetProgress() == achievement.GetRepetitions())
         {
             AddButton.interactable = false;
+        }
+        else
+        {
+            AddButton.interactable = true;
         }
     }
 
@@ -63,6 +82,7 @@ public class ButtonAchievement : MonoBehaviour
             LabelDescription.text = achievement.GetDescription();                         //DESCRIPTION
             LabelID.text = "ID: " + achievement.GetID();      //ID
             SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
+            LabelReward.text = achievement.GetReward();
             LabelCreationTime.text = achievement.GetCreationTime().Date.ToString();
         #endregion
         #region ProgressBar
@@ -73,12 +93,20 @@ public class ButtonAchievement : MonoBehaviour
         CheckProgress();
         #endregion
         #region ProgressBarTotal
-        LabelGoalTotal.text = achievement.GetGoal().ToString();
+        LabelGoalTotal.text = achievement.GetNumberOf().ToString();
             LabelProgressTotal.text = achievement.GetGlobalProgress().ToString();
             totalBarSizeGlobal = ProgressBarGlobal.GetComponent<RectTransform>().sizeDelta.x;
             ResizeProgressBarGlobal();
         #endregion
+        #region Adittional Info
+        LabelProgreso.text = "Progreso " + _typeDBInstance.types[achievement.GetTypeOf()].adjetivo;
+        LabelObjetivo.text = "Debes realizar el objetivo " + achievement.GetRepetitions() + " veces por " +
+                             _typeDBInstance.types[achievement.GetTypeOf()].singular + " durante " + achievement.GetNumberOf() + " " +
+                              _typeDBInstance.types[achievement.GetTypeOf()].plural +".";
 
+        LabelRestantes.text = (achievement.GetNumberOf() - achievement.GetGlobalProgress()) + " " + _typeDBInstance.types[achievement.GetTypeOf()].plural + " restantes";
+
+        #endregion
     }
     private void ResizeProgressBar()
     {

@@ -15,6 +15,7 @@ public class AchievementData
     public int[]             progress;
     public int[]             globalProgress;
     public System.DateTime[] creationTime;
+    public System.DateTime[] lastTime;
 
     public AchievementData(AchievementManager achievementManager)
     {
@@ -28,6 +29,7 @@ public class AchievementData
         globalProgress = new int[achievementManager.achievements.Count];
         type           = new int[achievementManager.achievements.Count];
         creationTime   = new System.DateTime[achievementManager.achievements.Count];
+        lastTime       = new System.DateTime[achievementManager.achievements.Count];
 
         for (int i = 0; i < achievementManager.achievements.Count; i++)
         {
@@ -40,7 +42,8 @@ public class AchievementData
             globalProgress[i] = achievementManager.achievements[i].GetGlobalProgress();
             reward[i]         = achievementManager.achievements[i].GetReward();
             type[i]           = achievementManager.achievements[i].GetTypeOf();
-            creationTime[i] = achievementManager.achievements[i].GetCreationTime();
+            creationTime[i]   = achievementManager.achievements[i].GetCreationTime();
+            lastTime[i]       = achievementManager.achievements[i].GetLastTime();
         }
         
     }
