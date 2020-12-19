@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class AchievementCreator : MonoBehaviour
 {
+    public static AchievementCreator _instance;
+
     [SerializeField]
-    GameObject inputName, inputDescription, inputRepetitions, inputReward, inputNumerOf;
+    GameObject inputName, inputDescription, inputRepetitions, inputReward, inputNumerOf, inputType;
 
     [SerializeField]
     GameObject labelAdjective, labelSingular, labelPlural;
@@ -19,6 +21,7 @@ public class AchievementCreator : MonoBehaviour
 
     public TypeDatabase _typeDBInstance;
 
+    int    achievementID;
     int    achievementIcon;
     string achievementName;
     string achievementDescription;
@@ -28,15 +31,24 @@ public class AchievementCreator : MonoBehaviour
     string achievementReward;
     bool   canConfirm;
 
-    Text textAdjective, textSingular, textPlural;
+    Achievement editableAchievement;
+
+    private void Awake()
+    {
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     private void Start()
     {
         canConfirm = true;
-        achievementType = 1; //Semanal por defecto
-        textAdjective = labelAdjective.GetComponent<Text>();
-        textSingular = labelSingular.GetComponent<Text>();
-        textPlural = labelPlural.GetComponent<Text>();
+        achievementType = 0; //Diario por defecto
     }
     public void StoreValues()
     {
@@ -57,8 +69,32 @@ public class AchievementCreator : MonoBehaviour
             CanvasManager._instance.ShowMainHideCreation();
             AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon, achievementType,
                                                         achievementRepetitions, achievementNumberOf, achievementReward);
+        }
+        else
+        {
+            CheckAsterisk();
+        }
+    }
+    public void ConfirmChanges()
+    {
+        DisableAsterisks();
+        canConfirm = true;
 
-            AchievementManager._instance.SaveAchievements();
+        achievementName = CheckNullString(inputName.GetComponent<InputField>().text);
+        achievementDescription = CheckNullString(inputDescription.GetComponent<InputField>().text);
+
+        achievementRepetitions = CheckNullInt(inputRepetitions.GetComponent<InputField>().text);
+        achievementNumberOf = CheckNullInt(inputNumerOf.GetComponent<InputField>().text);
+
+        achievementReward = CheckNullUndefined(inputReward.GetComponent<InputField>().text);
+        achievementIcon = IconManager._instance.GetIconID();
+
+        if (canConfirm)
+        {
+            CanvasManager._instance.ShowMainHideCreation();
+            
+            AchievementManager._instance.UpdateAchievement(achievementID, achievementName, achievementDescription, achievementIcon, achievementReward);
+            editableAchievement = null;
         }
         else
         {
@@ -66,6 +102,7 @@ public class AchievementCreator : MonoBehaviour
         }
     }
 
+    #region CheckForm
     private int CheckNullInt(string text)
     {
         int res = -1;
@@ -137,25 +174,6 @@ public class AchievementCreator : MonoBehaviour
             asterisks.GetChild(i).gameObject.SetActive(false);
         }
     }
-
-    public void SetType(int i)
-    {
-        achievementType = i;
-
-        inputNumerOf.GetComponent<InputField>().text = null;
-        inputRepetitions.GetComponent<InputField>().text = null;
-
-        textAdjective.text = _typeDBInstance.types[i].adjetivo;
-        textSingular.text  = "Repeticiones por " + _typeDBInstance.types[i].singular;
-        textPlural.text    = "Número de " + _typeDBInstance.types[i].plural;
-
-        inputRepetitions.transform.GetChild(1).gameObject.GetComponent<Text>().text = _typeDBInstance.types[i].defaultRepetitions.ToString();
-        inputNumerOf.transform.GetChild(1).gameObject.GetComponent<Text>().text = _typeDBInstance.types[i].defaultNumberOf.ToString();
-
-        inputRepetitions.GetComponent<InputField>().characterLimit = _typeDBInstance.types[i].maxRepetitionsCaracter;
-        inputNumerOf.GetComponent<InputField>().characterLimit = _typeDBInstance.types[i].maxNumberOfCaracter;
-    }
-
     public void CheckTypeValues()
     {
         if (inputRepetitions.GetComponent<InputField>().text != "" && int.Parse(inputRepetitions.GetComponent<InputField>().text) > _typeDBInstance.types[achievementType].maxRepetitions)
@@ -168,15 +186,41 @@ public class AchievementCreator : MonoBehaviour
             inputNumerOf.GetComponent<InputField>().text = _typeDBInstance.types[achievementType].maxNumberOf.ToString();
         }
     }
+    #endregion
+    public void SetType(int i)
+    {
+        achievementType = i;
+
+        inputNumerOf.GetComponent<InputField>().text = null;
+        inputRepetitions.GetComponent<InputField>().text = null;
+
+        labelAdjective.GetComponent<Text>().text = _typeDBInstance.types[i].adjetivo;
+        labelSingular.GetComponent<Text>().text  = "Repeticiones por " + _typeDBInstance.types[i].singular;
+        labelPlural.GetComponent<Text>().text    = "Número de " + _typeDBInstance.types[i].plural;
+
+        inputRepetitions.transform.GetChild(1).gameObject.GetComponent<Text>().text = _typeDBInstance.types[i].defaultRepetitions.ToString();
+        inputNumerOf.transform.GetChild(1).gameObject.GetComponent<Text>().text = _typeDBInstance.types[i].defaultNumberOf.ToString();
+
+        inputRepetitions.GetComponent<InputField>().characterLimit = _typeDBInstance.types[i].maxRepetitionsCaracter;
+        inputNumerOf.GetComponent<InputField>().characterLimit = _typeDBInstance.types[i].maxNumberOfCaracter;
+    }
+
+
 
     private void OnEnable()
     {
         canConfirm = true;
+        DisableAsterisks();
+
         inputName.GetComponent<InputField>().text = null;
         inputDescription.GetComponent<InputField>().text = null;
         inputNumerOf.GetComponent<InputField>().text = null;
         inputRepetitions.GetComponent<InputField>().text = null;
         inputReward.GetComponent<InputField>().text = null;
+
+        inputRepetitions.GetComponent<InputField>().interactable = true;
+        inputNumerOf.GetComponent<InputField>().interactable = true;
+        inputType.GetComponent<Button>().interactable = true;
     }
 
     public void TitleCharCounter(int max)
@@ -191,5 +235,29 @@ public class AchievementCreator : MonoBehaviour
         DescriptionCounter.text = "(" + counter + "/" + max + ")";
     }
 
+    public void AchievementEditor(Achievement achievement)
+    {
+        editableAchievement = achievement;
 
+        inputName.GetComponent<InputField>().text = editableAchievement.GetName();
+        inputDescription.GetComponent<InputField>().text = editableAchievement.GetDescription();
+        inputNumerOf.GetComponent<InputField>().text = editableAchievement.GetNumberOf().ToString();
+        inputRepetitions.GetComponent<InputField>().text = editableAchievement.GetRepetitions().ToString();
+        achievementType = editableAchievement.GetTypeOf();
+        inputReward.GetComponent<InputField>().text = editableAchievement.GetReward();
+        achievementIcon = editableAchievement.GetIconID();
+        achievementID = editableAchievement.GetID();
+
+        labelAdjective.GetComponent<Text>().text = _typeDBInstance.types[achievementType].adjetivo;
+        labelSingular.GetComponent<Text>().text = "Repeticiones por " + _typeDBInstance.types[achievementType].singular;
+        labelPlural.GetComponent<Text>().text = "Número de " + _typeDBInstance.types[achievementType].plural;
+
+        inputRepetitions.GetComponent<InputField>().interactable = false;
+        inputNumerOf.GetComponent<InputField>().interactable = false;
+        inputType.GetComponent<Button>().interactable = false;
+
+        IconManager._instance.SetIconID(achievement.GetIconID());
+        IconManager._instance.UnhoverAllButThis(achievement.GetIconID());
+        IconManager._instance.Hover(achievement.GetIconID());
+    }
 }

@@ -51,13 +51,21 @@ public class ButtonAchievement : MonoBehaviour
         UpdateInfo();
     }
 
-    private void UpdateInfo()
+    public void UpdateInfo()
     {
-        LabelProgress.text = achievement.GetProgress().ToString();
+        LabelTitle.text                         = achievement.GetName();
+        LabelDescription.text                   = achievement.GetDescription();
+        LabelReward.text                        = achievement.GetReward();
+        SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());
+
+        LabelProgress.text      = achievement.GetProgress().ToString();
         LabelProgressTotal.text = achievement.GetGlobalProgress().ToString();
+
         ResizeProgressBar();
         ResizeProgressBarGlobal();
-        SaveSystem.SaveProgress(AchievementManager._instance);
+
+        AchievementManager._instance.SaveAchievements();
+
         CheckProgress();
     }
 
@@ -78,11 +86,7 @@ public class ButtonAchievement : MonoBehaviour
         achievement = AchievementManager._instance.achievements[id];
 
         #region Main Info
-            LabelTitle.text = achievement.GetName();                         //NOMBRE
-            LabelDescription.text = achievement.GetDescription();                         //DESCRIPTION
-            LabelID.text = "ID: " + achievement.GetID();      //ID
-            SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
-            LabelReward.text = achievement.GetReward();
+            UpdateInfo();
             LabelCreationTime.text = achievement.GetCreationTime().Date.ToString();
         #endregion
         #region ProgressBar
@@ -123,18 +127,10 @@ public class ButtonAchievement : MonoBehaviour
 
         ProgressBarGlobal.GetComponent<RectTransform>().sizeDelta = barSize;
     }
-    /*
-    public void SwapButton()
+
+    public void EditAchievement()
     {
-        if(bigButton.activeSelf == false)
-        {
-            bigButton.SetActive(true);
-            littleButton.SetActive(false);
-        }
-        else
-        {
-            bigButton.SetActive(false);
-            littleButton.SetActive(true);
-        }
-    }*/
+        CanvasManager._instance.ShowEditorHideMain();
+        AchievementCreator._instance.AchievementEditor(achievement);
+    }
 }

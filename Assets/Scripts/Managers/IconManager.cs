@@ -72,6 +72,10 @@ public class IconManager : MonoBehaviour
             }
         }
     }
+    public void Hover(int id)
+    {
+        iconButtonArray[id].GetComponent<IconButton>().Hover();
+    }
 
     public Sprite GetIconByID(int ico)
     {

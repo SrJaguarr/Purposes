@@ -11,6 +11,8 @@ public class CanvasManager : MonoBehaviour
     public GameObject mainCanvas;
     public GameObject iconPanel;
     public GameObject typePanel;
+    public GameObject EditButton;
+    public GameObject NewButton;
 
     [SerializeField]
     GameObject typePanelArrow;
@@ -31,12 +33,22 @@ public class CanvasManager : MonoBehaviour
     {
         mainCanvas.SetActive(false);
         creationCanvas.SetActive(true);
+        NewButton.SetActive(true);
+    }
+
+    public void ShowEditorHideMain()
+    {
+        EditButton.SetActive(true);
+        mainCanvas.SetActive(false);
+        creationCanvas.SetActive(true);
     }
 
     public void ShowMainHideCreation()
     {
         mainCanvas.SetActive(true);
         creationCanvas.SetActive(false);
+        EditButton.SetActive(false);
+        NewButton.SetActive(false);
     }
 
     public void ShowIconPanel()
