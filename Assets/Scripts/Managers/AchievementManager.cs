@@ -52,6 +52,17 @@ public class AchievementManager : MonoBehaviour
         achievementButtons[achievements.Count-1].InitializeButton();
     }
 
+
+    public void UpdateAchievement(int id, string title, string desc, int icon, string reward)
+    {
+        achievements[id].SetName(title);
+        achievements[id].SetDescription(desc);
+        achievements[id].SetIconID(icon);
+        achievements[id].SetReward(reward);
+
+        achievementButtons[id].UpdateAchievement();
+    }
+
     public void ReloadAchievement(AchievementData data, int n)
     {
         achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());

@@ -5,12 +5,12 @@ using UnityEngine;
 public class Achievement
 {
     private int id;
-    private readonly string name;
-    private readonly string description;
-    private readonly int iconID;
+    private string name;
+    private string description;
+    private int iconID;
     private int goal;
     private int globalProgress;
-    private readonly string reward;
+    private string reward;
     private readonly int repetitions;
     private readonly int type;
     private readonly int numberOf;
@@ -37,13 +37,19 @@ public class Achievement
         goal              = repetitions * numberOf;
     }
 
+
+    public void SetName(string s) => name = s;
+
     public string GetName() { return name; }
 
+    public void SetDescription(string s) => description = s;
     public string GetDescription() { return description; }
 
     public int GetID() { return id; }
 
     public void SetID(int i) => id = i;
+
+    public void SetIconID(int i) => iconID = i;
 
     public int GetIconID() { return iconID; }
 
@@ -61,6 +67,8 @@ public class Achievement
             globalProgress++;
         }
     }
+
+    public void SetReward(string s) => reward = s; 
 
     public string GetReward() { return reward; }
 

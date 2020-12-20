@@ -51,6 +51,14 @@ public class ButtonAchievement : MonoBehaviour
         UpdateInfo();
     }
 
+    public void UpdateAchievement()
+    {
+        LabelTitle.text = achievement.GetName();
+        LabelDescription.text = achievement.GetDescription(); 
+        SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());
+        LabelReward.text = achievement.GetReward();
+    }
+
     private void UpdateInfo()
     {
         LabelProgress.text = achievement.GetProgress().ToString();
@@ -123,18 +131,10 @@ public class ButtonAchievement : MonoBehaviour
 
         ProgressBarGlobal.GetComponent<RectTransform>().sizeDelta = barSize;
     }
-    /*
-    public void SwapButton()
+    
+    public void EditAchievement()
     {
-        if(bigButton.activeSelf == false)
-        {
-            bigButton.SetActive(true);
-            littleButton.SetActive(false);
-        }
-        else
-        {
-            bigButton.SetActive(false);
-            littleButton.SetActive(true);
-        }
-    }*/
+        CanvasManager._instance.ShowEditionHideMain();
+        AchievementCreator._instance.EditAchievement(achievement);
+    }
 }

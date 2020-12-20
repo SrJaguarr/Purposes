@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class AchievementCreator : MonoBehaviour
 {
+    public static AchievementCreator _instance;
+
     [SerializeField]
-    GameObject inputName, inputDescription, inputRepetitions, inputReward, inputNumerOf;
+    GameObject inputName, inputDescription, inputRepetitions, inputReward, inputNumerOf, inputType;
 
     [SerializeField]
     GameObject labelAdjective, labelSingular, labelPlural;
@@ -28,7 +30,21 @@ public class AchievementCreator : MonoBehaviour
     string achievementReward;
     bool   canConfirm;
 
+    Achievement editableAchievement;
+
     Text textAdjective, textSingular, textPlural;
+
+    private void Awake()
+    {
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     private void Start()
     {
@@ -65,6 +81,32 @@ public class AchievementCreator : MonoBehaviour
             CheckAsterisk();
         }
     }
+
+    public void ConfirmEdition()
+    {
+        DisableAsterisks();
+        canConfirm = true;
+
+        achievementName = CheckNullString(inputName.GetComponent<InputField>().text);
+        achievementDescription = CheckNullString(inputDescription.GetComponent<InputField>().text);
+
+        achievementReward = CheckNullUndefined(inputReward.GetComponent<InputField>().text);
+        achievementIcon = IconManager._instance.GetIconID();
+
+        if (canConfirm)
+        {
+            CanvasManager._instance.ShowMainHideCreation();
+            AchievementManager._instance.UpdateAchievement(editableAchievement.GetID(), achievementName, achievementDescription, 
+                                                            achievementIcon, achievementReward);
+
+            AchievementManager._instance.SaveAchievements();
+        }
+        else
+        {
+            CheckAsterisk();
+        }
+    }
+
 
     private int CheckNullInt(string text)
     {
@@ -191,5 +233,28 @@ public class AchievementCreator : MonoBehaviour
         DescriptionCounter.text = "(" + counter + "/" + max + ")";
     }
 
+    public void EditAchievement(Achievement achievement)
+    {
+        editableAchievement = achievement;
 
+        inputName.GetComponent<InputField>().text = editableAchievement.GetName();
+        inputDescription.GetComponent<InputField>().text = editableAchievement.GetDescription();
+        inputNumerOf.GetComponent<InputField>().text = editableAchievement.GetNumberOf().ToString();
+        inputRepetitions.GetComponent<InputField>().text = editableAchievement.GetRepetitions().ToString();
+        achievementType = editableAchievement.GetTypeOf();
+        inputReward.GetComponent<InputField>().text = editableAchievement.GetReward();
+        achievementIcon = editableAchievement.GetIconID();
+
+        labelAdjective.GetComponent<Text>().text = _typeDBInstance.types[achievementType].adjetivo;
+        labelSingular.GetComponent<Text>().text = "Repeticiones por " + _typeDBInstance.types[achievementType].singular;
+        labelPlural.GetComponent<Text>().text = "Número de " + _typeDBInstance.types[achievementType].plural;
+
+        inputRepetitions.GetComponent<InputField>().interactable = false;
+        inputNumerOf.GetComponent<InputField>().interactable = false;
+        inputType.GetComponent<Button>().interactable = false;
+
+        IconManager._instance.SetIconID(achievement.GetIconID());
+        IconManager._instance.UnhoverAllButThis(achievement.GetIconID());
+        IconManager._instance.Hover(achievement.GetIconID());
+    }
 }
