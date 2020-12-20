@@ -96,8 +96,11 @@ public class AchievementCreator : MonoBehaviour
         if (canConfirm)
         {
             CanvasManager._instance.ShowMain();
-            AchievementManager._instance.UpdateAchievement(editableAchievement.GetID(), achievementName, achievementDescription, 
-                                                            achievementIcon, achievementReward);
+
+            editableAchievement.SetName(achievementName);
+            editableAchievement.SetDescription(achievementDescription);
+            editableAchievement.SetIconID(achievementIcon);
+            editableAchievement.SetReward(achievementReward);
 
             AchievementManager._instance.SaveAchievements();
         }

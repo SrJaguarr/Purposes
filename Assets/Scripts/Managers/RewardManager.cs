@@ -9,14 +9,15 @@ public class RewardManager : MonoBehaviour
     public List<Achievement> achievements = new List<Achievement>();
 
     [SerializeField]
-    GameObject rewardPrefab;
+    GameObject rewardPrefab, completedPrefab;
 
     [SerializeField]
-    Transform rewardLayout;
+    Transform rewardLayout, completedLayout;
 
     List<ButtonReward> rewardButtons = new List<ButtonReward>();
+    List<ButtonCompleted> completedButtons = new List<ButtonCompleted>();
 
-    GameObject blankText;
+    GameObject rewardBlankText, completedBlankText;
 
     private void Awake()
     {
@@ -33,30 +34,49 @@ public class RewardManager : MonoBehaviour
 
     private void Start()
     {
-        blankText = rewardLayout.GetChild(0).gameObject;
+        rewardBlankText = rewardLayout.GetChild(0).gameObject;
+        completedBlankText = completedLayout.GetChild(0).gameObject;
     }
 
     private void Update()
     {
-        IsListEmpty();
+        IsRewardListEmpty();
+        IsCompletedListEmpty();
     }
 
     public void NewReward(Achievement achievement)
     {
         achievements.Add(achievement);
+
         rewardButtons.Add(Instantiate(rewardPrefab, rewardLayout).GetComponent<ButtonReward>());
         rewardButtons[rewardButtons.Count-1].InitializeButton(achievement);
+
+        completedButtons.Add(Instantiate(completedPrefab, completedLayout).GetComponent<ButtonCompleted>());
+        completedButtons[completedButtons.Count - 1].InitializeButton(achievement);
+
     }
 
-    private void IsListEmpty()
+    private void IsRewardListEmpty()
     {
         if (rewardLayout.childCount == 1)
         {
-            blankText.SetActive(true);
+            rewardBlankText.SetActive(true);
         }
         else
         {
-            blankText.SetActive(false);
+            rewardBlankText.SetActive(false);
+        }
+    }
+
+    private void IsCompletedListEmpty()
+    {
+        if (completedLayout.childCount == 1)
+        {
+            completedBlankText.SetActive(true);
+        }
+        else
+        {
+            completedBlankText.SetActive(false);
         }
     }
 }

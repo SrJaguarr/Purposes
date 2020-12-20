@@ -22,6 +22,7 @@ public class ButtonReward : MonoBehaviour
             SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
             LabelReward.text = achievement.GetReward();
             LabelCreationTime.text = achievement.GetCreationTime().Date.ToString();
+            LabelFinishTime.text   = achievement.GetFinishTime().Date.ToString();
         #endregion
     }
 

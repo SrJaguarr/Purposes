@@ -41,6 +41,7 @@ public class ButtonAchievement : MonoBehaviour
 
     private void Update()
     {
+        UpdateAchievement();
         if (achievement.HasChangedTime())
         {
             UpdateInfo();
