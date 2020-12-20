@@ -13,6 +13,8 @@ public class CanvasManager : MonoBehaviour
     public GameObject typePanel;
     public GameObject buttonEdit;
     public GameObject buttonCreate;
+    public GameObject RewardsLayer;
+    public GameObject AchievementsLayer;
 
     [SerializeField]
     GameObject typePanelArrow;
@@ -29,26 +31,39 @@ public class CanvasManager : MonoBehaviour
             Destroy(this);
         }
     }
-    public void ShowCreationHideMain()
+
+    public void ShowCreation()
     {
         mainCanvas.SetActive(false);
         creationCanvas.SetActive(true);
         buttonCreate.SetActive(true);
     }
 
-    public void ShowEditionHideMain()
+    public void ShowEdition()
     {
         mainCanvas.SetActive(false);
         creationCanvas.SetActive(true);
         buttonEdit.SetActive(true);
     }
 
-    public void ShowMainHideCreation()
+    public void ShowRewards()
     {
         mainCanvas.SetActive(true);
         creationCanvas.SetActive(false);
         buttonCreate.SetActive(false);
         buttonEdit.SetActive(false);
+        RewardsLayer.SetActive(true);
+        AchievementsLayer.SetActive(false);
+    }
+
+    public void ShowMain()
+    {
+        mainCanvas.SetActive(true);
+        creationCanvas.SetActive(false);
+        buttonCreate.SetActive(false);
+        buttonEdit.SetActive(false);
+        RewardsLayer.SetActive(false);
+        AchievementsLayer.SetActive(true);
     }
 
     public void ShowIconPanel()

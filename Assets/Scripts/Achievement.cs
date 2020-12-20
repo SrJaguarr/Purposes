@@ -14,13 +14,15 @@ public class Achievement
     private readonly int repetitions;
     private readonly int type;
     private readonly int numberOf;
+    private bool isAchieved;
     private int progress;
     System.DateTime dateTime;
     System.DateTime lastTime;
     System.DateTime creationTime;
+    System.DateTime finishTime;
 
-    public Achievement(int newID, string newName, string newDescription, int newIconID, int newType,int newRepetitions, 
-                       int newNumberOf, int newGlobalProgress, int newProgress, string newReward, System.DateTime newCreation, System.DateTime newTime)
+    public Achievement(int newID, bool newIsAchieved, string newName, string newDescription, int newIconID, int newType,int newRepetitions, int newNumberOf, 
+                        int newGlobalProgress, int newProgress, string newReward, System.DateTime newCreation, System.DateTime newTime, System.DateTime newFinishTime)
     {
         id                = newID;
         name              = newName;
@@ -34,6 +36,9 @@ public class Achievement
         reward            = newReward;
         creationTime      = newCreation;
         lastTime          = newTime;
+        finishTime        = newFinishTime;
+        isAchieved        = newIsAchieved;
+
         goal              = repetitions * numberOf;
     }
 
@@ -65,6 +70,11 @@ public class Achievement
         if(progress == repetitions)
         {
             globalProgress++;
+            if (globalProgress == numberOf)
+            {
+                finishTime = System.DateTime.Now;
+                isAchieved = true;
+            }
         }
     }
 
@@ -138,8 +148,10 @@ public class Achievement
         return res;
     }
 
-    public System.DateTime GetLastTime()
-    {
-        return lastTime;
-    }
+    public System.DateTime GetLastTime() { return lastTime; }
+
+    public bool IsAchieved() { return isAchieved; }
+
+    public System.DateTime GetFinishTime() { return finishTime; }
+
 }

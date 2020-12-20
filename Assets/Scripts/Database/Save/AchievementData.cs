@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class AchievementData
 {
+    public bool[]            isAchieved;
     public string[]          name;
     public string[]          description;
     public string[]          reward;
@@ -16,9 +17,11 @@ public class AchievementData
     public int[]             globalProgress;
     public System.DateTime[] creationTime;
     public System.DateTime[] lastTime;
+    public System.DateTime[] finishTime;
 
     public AchievementData(AchievementManager achievementManager)
     {
+        isAchieved     = new bool[achievementManager.achievements.Count];
         name           = new string[achievementManager.achievements.Count];
         description    = new string[achievementManager.achievements.Count];
         reward         = new string[achievementManager.achievements.Count];
@@ -30,9 +33,11 @@ public class AchievementData
         type           = new int[achievementManager.achievements.Count];
         creationTime   = new System.DateTime[achievementManager.achievements.Count];
         lastTime       = new System.DateTime[achievementManager.achievements.Count];
+        finishTime     = new System.DateTime[achievementManager.achievements.Count];
 
         for (int i = 0; i < achievementManager.achievements.Count; i++)
         {
+            isAchieved[i]     = achievementManager.achievements[i].IsAchieved();
             name[i]           = achievementManager.achievements[i].GetName();
             description[i]    = achievementManager.achievements[i].GetDescription();
             iconID[i]         = achievementManager.achievements[i].GetIconID();
@@ -44,6 +49,7 @@ public class AchievementData
             type[i]           = achievementManager.achievements[i].GetTypeOf();
             creationTime[i]   = achievementManager.achievements[i].GetCreationTime();
             lastTime[i]       = achievementManager.achievements[i].GetLastTime();
+            finishTime[i]     = achievementManager.achievements[i].GetFinishTime();
         }
         
     }

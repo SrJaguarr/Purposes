@@ -70,7 +70,7 @@ public class AchievementCreator : MonoBehaviour
 
         if (canConfirm)
         {
-            CanvasManager._instance.ShowMainHideCreation();
+            CanvasManager._instance.ShowMain();
             AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon, achievementType,
                                                         achievementRepetitions, achievementNumberOf, achievementReward);
 
@@ -95,7 +95,7 @@ public class AchievementCreator : MonoBehaviour
 
         if (canConfirm)
         {
-            CanvasManager._instance.ShowMainHideCreation();
+            CanvasManager._instance.ShowMain();
             AchievementManager._instance.UpdateAchievement(editableAchievement.GetID(), achievementName, achievementDescription, 
                                                             achievementIcon, achievementReward);
 
@@ -219,6 +219,10 @@ public class AchievementCreator : MonoBehaviour
         inputNumerOf.GetComponent<InputField>().text = null;
         inputRepetitions.GetComponent<InputField>().text = null;
         inputReward.GetComponent<InputField>().text = null;
+
+        inputRepetitions.GetComponent<InputField>().interactable = true;
+        inputNumerOf.GetComponent<InputField>().interactable = true;
+        inputType.GetComponent<Button>().interactable = true;
     }
 
     public void TitleCharCounter(int max)

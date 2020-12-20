@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ButtonAchievement : MonoBehaviour
 {
-    int id;
     [SerializeField]
     Text LabelTitle, LabelDescription, LabelID, LabelCreationTime, LabelReward, LabelObjetivo, LabelRestantes, LabelProgreso;
 
@@ -31,7 +30,12 @@ public class ButtonAchievement : MonoBehaviour
 
     public void DeleteButton()
     {
-        AchievementManager._instance.RemoveAchievement(id);
+        AchievementManager._instance.RemoveAchievement(achievement.GetID());
+        Destroy(this.transform.gameObject);
+    }
+
+    public void DestroyButton()
+    {
         Destroy(this.transform.gameObject);
     }
 
@@ -43,11 +47,16 @@ public class ButtonAchievement : MonoBehaviour
         }
     }
 
-    public void SetID(int i) => id = i;
-
     public void AddProgress()
     {
         achievement.AddProgress();
+        if (achievement.GetGlobalProgress() == achievement.GetNumberOf())
+        {
+            RewardManager._instance.NewReward(achievement);
+            AchievementManager._instance.RemoveButton(GetComponent<ButtonAchievement>());
+            DestroyButton();
+        }
+
         UpdateInfo();
     }
 
@@ -81,9 +90,9 @@ public class ButtonAchievement : MonoBehaviour
         }
     }
 
-    public void InitializeButton()
+    public void InitializeButton(Achievement a)
     {
-        achievement = AchievementManager._instance.achievements[id];
+        achievement = a;
 
         #region Main Info
             LabelTitle.text = achievement.GetName();                         //NOMBRE
@@ -134,7 +143,7 @@ public class ButtonAchievement : MonoBehaviour
     
     public void EditAchievement()
     {
-        CanvasManager._instance.ShowEditionHideMain();
+        CanvasManager._instance.ShowEdition();
         AchievementCreator._instance.EditAchievement(achievement);
     }
 }

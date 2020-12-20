@@ -13,7 +13,6 @@ public class AchievementManager : MonoBehaviour
 
     [SerializeField]
     Transform verticalLayout;
-
     List<ButtonAchievement> achievementButtons = new List<ButtonAchievement>();
 
     GameObject blankText;
@@ -45,11 +44,11 @@ public class AchievementManager : MonoBehaviour
     
     public void NewAchievement(string name, string desc, int icon, int type, int reps, int number, string reward)
     {
+        achievements.Add(new Achievement(achievements.Count, false, name, desc, icon, type, reps, number, 0, 0, reward, System.DateTime.Now, System.DateTime.Now, System.DateTime.Now));
+
         achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
-        achievementButtons[achievements.Count].SetID(achievements.Count);
-        
-        achievements.Add(new Achievement(achievements.Count, name, desc, icon, type, reps, number, 0, 0, reward, System.DateTime.Now, System.DateTime.Now));
-        achievementButtons[achievements.Count-1].InitializeButton();
+
+        achievementButtons[achievementButtons.Count-1].InitializeButton(achievements[achievements.Count - 1]);
     }
 
 
@@ -65,12 +64,18 @@ public class AchievementManager : MonoBehaviour
 
     public void ReloadAchievement(AchievementData data, int n)
     {
-        achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
-        achievementButtons[achievements.Count].SetID(achievements.Count);
-        achievements.Add(new Achievement(achievements.Count, data.name[n], data.description[n], data.iconID[n], data.type[n],data.repetitions[n], 
-                                         data.numberOf[n], data.globalProgress[n], data.progress[n], data.reward[n], data.creationTime[n], data.lastTime[n]));
+        achievements.Add(new Achievement(achievements.Count, data.isAchieved[n], data.name[n], data.description[n], data.iconID[n], data.type[n], data.repetitions[n],
+                                         data.numberOf[n], data.globalProgress[n], data.progress[n], data.reward[n], data.creationTime[n], data.lastTime[n], data.finishTime[n]));
 
-        achievementButtons[achievements.Count-1].InitializeButton();
+        if (achievements[achievements.Count - 1].IsAchieved())
+        {
+            RewardManager._instance.NewReward(achievements[achievements.Count - 1]);
+        }
+        else
+        {
+            achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
+            achievementButtons[achievementButtons.Count-1].InitializeButton(achievements[achievements.Count - 1]);
+        }
     }
 
     public void SaveAchievements()
@@ -89,6 +94,11 @@ public class AchievementManager : MonoBehaviour
                 ReloadAchievement(data, i);
             }
         }
+    }
+
+    public void RemoveButton(ButtonAchievement b)
+    {
+        achievementButtons.Remove(b);
     }
 
     public void RemoveAchievement(int id)
@@ -116,7 +126,6 @@ public class AchievementManager : MonoBehaviour
         for(int i = 0; i < achievements.Count; i++)
         {
             achievements[i].SetID(i);
-            achievementButtons[i].SetID(i);
         }
     }
 }
