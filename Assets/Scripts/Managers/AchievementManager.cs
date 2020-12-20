@@ -16,6 +16,7 @@ public class AchievementManager : MonoBehaviour
     List<ButtonAchievement> achievementButtons = new List<ButtonAchievement>();
 
     GameObject blankText;
+    int completedAchievements = 0;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class AchievementManager : MonoBehaviour
         if (achievements[achievements.Count - 1].IsAchieved())
         {
             RewardManager._instance.NewReward(achievements[achievements.Count - 1]);
+            completedAchievements++;
         }
         else
         {
@@ -116,5 +118,10 @@ public class AchievementManager : MonoBehaviour
         {
             achievements[i].SetID(i);
         }
+    }
+
+    public int GetCompletedAmount()
+    {
+        return completedAchievements;
     }
 }

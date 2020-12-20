@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class RewardManager : MonoBehaviour
 {
     public static RewardManager _instance;
-    public List<Achievement> achievements = new List<Achievement>();
 
     [SerializeField]
     GameObject rewardPrefab, completedPrefab;
@@ -46,14 +45,11 @@ public class RewardManager : MonoBehaviour
 
     public void NewReward(Achievement achievement)
     {
-        achievements.Add(achievement);
-
         rewardButtons.Add(Instantiate(rewardPrefab, rewardLayout).GetComponent<ButtonReward>());
         rewardButtons[rewardButtons.Count-1].InitializeButton(achievement);
 
         completedButtons.Add(Instantiate(completedPrefab, completedLayout).GetComponent<ButtonCompleted>());
         completedButtons[completedButtons.Count - 1].InitializeButton(achievement);
-
     }
 
     private void IsRewardListEmpty()

@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
 
     public GameObject creationCanvas;
     public GameObject mainCanvas;
+    public GameObject profileCanvas;
     public GameObject iconPanel;
     public GameObject typePanel;
     public GameObject buttonEdit;
@@ -38,6 +39,13 @@ public class CanvasManager : MonoBehaviour
         mainCanvas.SetActive(false);
         creationCanvas.SetActive(true);
         buttonCreate.SetActive(true);
+    }
+
+    public void ShowProfile()
+    {
+        mainCanvas.SetActive(false);
+        creationCanvas.SetActive(false);
+        profileCanvas.SetActive(true);
     }
 
     public void ShowCompleted()

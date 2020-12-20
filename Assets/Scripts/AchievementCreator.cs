@@ -222,6 +222,7 @@ public class AchievementCreator : MonoBehaviour
         inputNumerOf.GetComponent<InputField>().text = null;
         inputRepetitions.GetComponent<InputField>().text = null;
         inputReward.GetComponent<InputField>().text = null;
+        DisableAsterisks();
 
         inputRepetitions.GetComponent<InputField>().interactable = true;
         inputNumerOf.GetComponent<InputField>().interactable = true;

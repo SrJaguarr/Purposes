@@ -44,4 +44,44 @@ public static class SaveSystem
         }
     }
 
+    public static void SaveUserData(ProfileManager profileManager)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/userdata.dyc";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        ProfileData data = new ProfileData(profileManager);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static ProfileData LoadUserdata()
+    {
+        string path = Application.persistentDataPath + "/userdata.dyc";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            if (stream.Length > 0)
+            {
+                ProfileData data = formatter.Deserialize(stream) as ProfileData;
+                stream.Close();
+                return data;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
+
 }
