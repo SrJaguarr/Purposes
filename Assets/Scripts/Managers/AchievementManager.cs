@@ -43,9 +43,9 @@ public class AchievementManager : MonoBehaviour
     }
 
     
-    public void NewAchievement(string name, string desc, int icon, int type, int reps, int number, string reward)
+    public void NewAchievement(string name, string desc, int icon, int color, int type, int reps, int number, string reward)
     {
-        achievements.Add(new Achievement(achievements.Count, name, desc, icon, type, reps, number, reward, System.DateTime.Now));
+        achievements.Add(new Achievement(achievements.Count, name, desc, icon, color, type, reps, number, reward, System.DateTime.Now));
 
         achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
 
@@ -54,7 +54,7 @@ public class AchievementManager : MonoBehaviour
 
     public void ReloadAchievement(AchievementData data, int n)
     {
-        achievements.Add(new Achievement(achievements.Count, data.isAchieved[n], data.isPaused[n], data.name[n], data.description[n], data.iconID[n], data.type[n], data.repetitions[n],
+        achievements.Add(new Achievement(achievements.Count, data.isAchieved[n], data.isPaused[n], data.name[n], data.description[n], data.iconID[n], data.colorID[n], data.type[n], data.repetitions[n],
                                          data.numberOf[n], data.globalProgress[n], data.progress[n], data.reward[n], data.creationTime[n], data.lastTime[n], data.finishTime[n]));
 
         if (achievements[achievements.Count - 1].IsAchieved())

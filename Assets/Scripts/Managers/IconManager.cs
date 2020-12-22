@@ -81,12 +81,8 @@ public class IconManager : MonoBehaviour
     public Sprite GetIconByID(int ico)
     {
         Sprite sprite;
-        int i = 0;
-        while (!(_dbInstance.icons[i].id == ico))
-        {
-            i++;
-        }
-        sprite = _dbInstance.icons[i].sprite;
+
+        sprite = _dbInstance.icons[ico].sprite;
 
         return sprite;
     }

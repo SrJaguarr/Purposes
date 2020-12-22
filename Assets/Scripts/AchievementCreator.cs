@@ -21,6 +21,7 @@ public class AchievementCreator : MonoBehaviour
 
     public TypeDatabase _typeDBInstance;
 
+    int    achievementColor;
     int    achievementIcon;
     string achievementName;
     string achievementDescription;
@@ -66,12 +67,13 @@ public class AchievementCreator : MonoBehaviour
         achievementNumberOf    = CheckNullInt(inputNumerOf.GetComponent<InputField>().text);
 
         achievementReward       = CheckNullUndefined(inputReward.GetComponent<InputField>().text);
-        achievementIcon        = IconManager._instance.GetIconID();
+        achievementIcon         = IconManager._instance.GetIconID();
+        achievementColor        = ColorManager._instance.GetIconID();
 
         if (canConfirm)
         {
             CanvasManager._instance.ShowMain();
-            AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon, achievementType,
+            AchievementManager._instance.NewAchievement(achievementName, achievementDescription, achievementIcon, achievementColor, achievementType,
                                                         achievementRepetitions, achievementNumberOf, achievementReward);
 
             AchievementManager._instance.SaveAchievements();
@@ -92,6 +94,7 @@ public class AchievementCreator : MonoBehaviour
 
         achievementReward = CheckNullUndefined(inputReward.GetComponent<InputField>().text);
         achievementIcon = IconManager._instance.GetIconID();
+        achievementColor = ColorManager._instance.GetIconID();
 
         if (canConfirm)
         {
@@ -101,6 +104,7 @@ public class AchievementCreator : MonoBehaviour
             editableAchievement.SetDescription(achievementDescription);
             editableAchievement.SetIconID(achievementIcon);
             editableAchievement.SetReward(achievementReward);
+            editableAchievement.SetColorID(achievementColor);
 
             AchievementManager._instance.SaveAchievements();
         }
@@ -224,6 +228,12 @@ public class AchievementCreator : MonoBehaviour
         inputReward.GetComponent<InputField>().text = null;
         DisableAsterisks();
 
+        IconManager._instance.SetIconID(0);
+        IconManager._instance.UnhoverAllButThis(0);
+        IconManager._instance.Hover(0);
+
+        ColorManager._instance.SetColorID(0);
+
         inputRepetitions.GetComponent<InputField>().interactable = true;
         inputNumerOf.GetComponent<InputField>().interactable = true;
         inputType.GetComponent<Button>().interactable = true;
@@ -264,5 +274,7 @@ public class AchievementCreator : MonoBehaviour
         IconManager._instance.SetIconID(achievement.GetIconID());
         IconManager._instance.UnhoverAllButThis(achievement.GetIconID());
         IconManager._instance.Hover(achievement.GetIconID());
+
+        ColorManager._instance.SetColorID(achievement.GetColorID());
     }
 }

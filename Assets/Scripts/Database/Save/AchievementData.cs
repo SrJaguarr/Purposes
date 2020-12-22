@@ -12,6 +12,7 @@ public class AchievementData
     public string[]          reward;
     public int[]             type;
     public int[]             iconID;
+    public int[]             colorID;
     public int[]             repetitions;
     public int[]             numberOf;
     public int[]             progress;
@@ -28,6 +29,7 @@ public class AchievementData
         description    = new string[achievementManager.achievements.Count];
         reward         = new string[achievementManager.achievements.Count];
         iconID         = new int[achievementManager.achievements.Count];
+        colorID        = new int[achievementManager.achievements.Count];
         repetitions    = new int[achievementManager.achievements.Count];
         numberOf       = new int[achievementManager.achievements.Count];
         progress       = new int[achievementManager.achievements.Count];
@@ -44,6 +46,7 @@ public class AchievementData
             name[i]           = achievementManager.achievements[i].GetName();
             description[i]    = achievementManager.achievements[i].GetDescription();
             iconID[i]         = achievementManager.achievements[i].GetIconID();
+            colorID[i]        = achievementManager.achievements[i].GetColorID();
             repetitions[i]    = achievementManager.achievements[i].GetRepetitions();
             numberOf[i]       = achievementManager.achievements[i].GetNumberOf();
             progress[i]       = achievementManager.achievements[i].GetProgress();

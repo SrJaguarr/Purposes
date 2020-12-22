@@ -1665,6 +1665,7 @@ MonoBehaviour:
   LabelRestantes: {fileID: 8420202061116973641}
   LabelProgreso: {fileID: 2284080603578605459}
   SpriteIcon: {fileID: 5901046378072761062}
+  colorBackground: {fileID: 9104153497891204288}
   ProgressBar: {fileID: 7504300723697575692}
   ProgressBarGlobal: {fileID: 2923666073430340047}
   LabelProgressTotal: {fileID: 1800068347034762904}

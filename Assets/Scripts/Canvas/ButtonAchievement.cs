@@ -12,6 +12,9 @@ public class ButtonAchievement : MonoBehaviour
     GameObject SpriteIcon;
 
     [SerializeField]
+    Image colorBackground;
+
+    [SerializeField]
     GameObject ProgressBar, ProgressBarGlobal;
 
     [SerializeField]
@@ -71,6 +74,7 @@ public class ButtonAchievement : MonoBehaviour
         LabelDescription.text = achievement.GetDescription(); 
         SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());
         LabelReward.text = achievement.GetReward();
+        colorBackground.sprite = ColorManager._instance.GetBigBGByID(achievement.GetColorID());
     }
 
     private void UpdateInfo()
@@ -106,6 +110,7 @@ public class ButtonAchievement : MonoBehaviour
             SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
             LabelReward.text = achievement.GetReward();
             LabelCreationTime.text = achievement.GetCreationTime().Date.ToString();
+            colorBackground.sprite = ColorManager._instance.GetBigBGByID(achievement.GetColorID());
         #endregion
         #region ProgressBar
         LabelGoal.text = achievement.GetRepetitions().ToString();

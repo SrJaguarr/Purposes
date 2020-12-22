@@ -455,6 +455,7 @@ MonoBehaviour:
   LabelCreationTime: {fileID: 7140929037478347282}
   LabelFinishTime: {fileID: 7133084376362721927}
   LabelReward: {fileID: 4942301269806595930}
+  backgroundColor: {fileID: 9104153497891204288}
   SpriteIcon: {fileID: 5901046378072761062}
 --- !u!1 &7674338290127776213
 GameObject:

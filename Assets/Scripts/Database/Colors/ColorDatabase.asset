@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ColorDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::ColorDatabase
+  colors:
+  - id: 0
+    sprite: {fileID: 21300000, guid: 78326cc8250c8b542bc4a8fee2ab9ec1, type: 3}
+    bigBG: {fileID: 21300000, guid: 9ccefddca99938a4c8a639974216672d, type: 3}
+    litBG: {fileID: 21300000, guid: 6f6d7ae005bdf6c40ab73172d46da836, type: 3}
+  - id: 1
+    sprite: {fileID: 21300000, guid: 45b3aac0084fb9e489332f363f196cb4, type: 3}
+    bigBG: {fileID: 21300000, guid: 4c43a81cb6bba9944a339391117892b6, type: 3}
+    litBG: {fileID: 21300000, guid: e617e90b9948ece4a82b90eeb8e0e068, type: 3}
+  - id: 2
+    sprite: {fileID: 21300000, guid: e8ca7d692e180ef488fd2c846f582898, type: 3}
+    bigBG: {fileID: 21300000, guid: b22d10c9b804a784aa24af82eb9ece7f, type: 3}
+    litBG: {fileID: 21300000, guid: f5a61e65ea89c8b4cb2fa30bcbb7bd2a, type: 3}
+  - id: 3
+    sprite: {fileID: 21300000, guid: 107f47ede397e524ea92ee76123e4d8e, type: 3}
+    bigBG: {fileID: 21300000, guid: 532e3e55f9ec06b4287876013557569e, type: 3}
+    litBG: {fileID: 21300000, guid: b60dbef1424e0324d81096e684b4e156, type: 3}
+  - id: 4
+    sprite: {fileID: 21300000, guid: 3507be9efd986ad41b5e520131e3b27b, type: 3}
+    bigBG: {fileID: 21300000, guid: 2918558029772654fab48fe35a74d562, type: 3}
+    litBG: {fileID: 21300000, guid: 0a786ad37acb68844be3eea7df5f4bf5, type: 3}

@@ -17,6 +17,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject RewardsLayer;
     public GameObject AchievementsLayer;
     public GameObject CompletedLayer;
+    public GameObject ColorPanel;
 
     [SerializeField]
     GameObject typePanelArrow;
@@ -96,6 +97,16 @@ public class CanvasManager : MonoBehaviour
     public void HideIconPanel()
     {
         iconPanel.SetActive(false);
+    }
+
+    public void ShowColorPanel()
+    {
+        ColorPanel.SetActive(true);
+    }
+
+    public void HideColorPanel()
+    {
+        ColorPanel.SetActive(false);
     }
 
     public void ShowTypePanel()

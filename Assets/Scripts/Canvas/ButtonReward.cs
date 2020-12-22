@@ -9,6 +9,9 @@ public class ButtonReward : MonoBehaviour
     Text LabelTitle, LabelCreationTime, LabelFinishTime, LabelReward;
 
     [SerializeField]
+    Image backgroundColor;
+
+    [SerializeField]
     GameObject SpriteIcon;
 
     Achievement achievement;
@@ -18,6 +21,7 @@ public class ButtonReward : MonoBehaviour
         achievement = a;
 
         #region Main Info
+            backgroundColor.sprite = ColorManager._instance.GetLitBGByID(achievement.GetColorID());
             LabelTitle.text = achievement.GetName();
             SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
             LabelReward.text = achievement.GetReward();

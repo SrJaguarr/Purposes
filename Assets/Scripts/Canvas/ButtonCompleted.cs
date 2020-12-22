@@ -11,6 +11,9 @@ public class ButtonCompleted : MonoBehaviour
     [SerializeField]
     GameObject SpriteIcon;
 
+    [SerializeField]
+    Image backgroundImage;
+
     Achievement achievement;
 
     public TypeDatabase _typeDBInstance;
@@ -19,6 +22,7 @@ public class ButtonCompleted : MonoBehaviour
     {
         achievement = a;
 
+        backgroundImage.sprite = ColorManager._instance.GetBigBGByID(achievement.GetColorID());
         LabelTitle.text = achievement.GetName();
         LabelDescription.text = achievement.GetDescription();
         SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON

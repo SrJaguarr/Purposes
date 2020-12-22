@@ -8,6 +8,7 @@ public class Achievement
     private string name;
     private string description;
     private int iconID;
+    private int colorID;
     private int goal;
     private int globalProgress;
     private string reward;
@@ -22,7 +23,7 @@ public class Achievement
     System.DateTime creationTime;
     System.DateTime finishTime;
 
-    public Achievement(int newID, bool newIsAchieved, bool newIsPaused, string newName, string newDescription, int newIconID, int newType,int newRepetitions, int newNumberOf, 
+    public Achievement(int newID, bool newIsAchieved, bool newIsPaused, string newName, string newDescription, int newIconID, int newColor, int newType,int newRepetitions, int newNumberOf, 
                         int newGlobalProgress, int newProgress, string newReward, System.DateTime newCreation, System.DateTime newTime, System.DateTime newFinishTime) //SAVED ACHIEVEMENT
     {
         id                = newID;
@@ -40,10 +41,11 @@ public class Achievement
         finishTime        = newFinishTime;
         isAchieved        = newIsAchieved;
         isPaused          = newIsPaused;
+        colorID           = newColor;
         goal              = repetitions * numberOf;
     }
 
-    public Achievement(int newID, string newName, string newDescription, int newIconID, int newType, int newRepetitions, int newNumberOf,                               //NEW ACHIEVEMENT
+    public Achievement(int newID, string newName, string newDescription, int newIconID, int newColor, int newType, int newRepetitions, int newNumberOf,                               //NEW ACHIEVEMENT
                         string newReward, System.DateTime newCreation)
     {
         id = newID;
@@ -55,6 +57,7 @@ public class Achievement
         numberOf = newNumberOf;
         reward = newReward;
         creationTime = newCreation;
+        colorID = newColor;
 
         progress = 0;
         globalProgress = 0;
@@ -94,6 +97,9 @@ public class Achievement
 
     public int GetIconID() { return iconID; }
 
+    public int GetColorID() { return colorID; }
+
+    public void SetColorID(int i) => colorID = i;
     public int GetRepetitions() { return repetitions; }
 
     public int GetNumberOf() { return numberOf; }
