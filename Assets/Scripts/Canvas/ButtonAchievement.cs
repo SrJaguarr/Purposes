@@ -27,6 +27,7 @@ public class ButtonAchievement : MonoBehaviour
     GameObject buttonPause, buttonResume, pausedBackground;
 
     public TypeDatabase _typeDBInstance;
+    public ColorDatabase _colorDBInstance;
 
     Vector2 barSize;
     float totalBarSizeGlobal;
@@ -110,7 +111,8 @@ public class ButtonAchievement : MonoBehaviour
             SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
             LabelReward.text = achievement.GetReward();
             LabelCreationTime.text = achievement.GetCreationTime().Date.ToString();
-            colorBackground.sprite = ColorManager._instance.GetBigBGByID(achievement.GetColorID());
+
+        colorBackground.sprite = _colorDBInstance.colors[achievement.GetColorID()].bigBG;
         #endregion
         #region ProgressBar
         LabelGoal.text = achievement.GetRepetitions().ToString();

@@ -101,7 +101,19 @@ public class CanvasManager : MonoBehaviour
 
     public void ShowColorPanel()
     {
-        ColorPanel.SetActive(true);
+        if (ColorPanel.activeSelf)
+        {
+            ColorPanel.SetActive(false);
+        }
+        else
+        {
+            ColorPanel.SetActive(true);
+        }
+    }
+
+    public void HideTypePanel()
+    {
+        typePanel.SetActive(false);
     }
 
     public void HideColorPanel()

@@ -112,8 +112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 192.6, y: -20}
-  m_SizeDelta: {x: 527.04926, y: 52.14685}
+  m_AnchoredPosition: {x: 197.39, y: -20}
+  m_SizeDelta: {x: 536.6302, y: 52.14685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3359470519464117958
 CanvasRenderer:
@@ -155,7 +155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: aaaaaaaaaaaaaaaaaaaaaaa
+  m_Text: aaaaaaaaaaaaaaaaaaaaaaaa
 --- !u!1 &5901046378072761062
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +457,7 @@ MonoBehaviour:
   LabelReward: {fileID: 4942301269806595930}
   backgroundColor: {fileID: 9104153497891204288}
   SpriteIcon: {fileID: 5901046378072761062}
+  _colorDBinstance: {fileID: 11400000, guid: d2990dc05add14d479d5aa5a6381238d, type: 2}
 --- !u!1 &7674338290127776213
 GameObject:
   m_ObjectHideFlags: 0

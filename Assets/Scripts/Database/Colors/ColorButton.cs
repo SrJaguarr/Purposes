@@ -7,8 +7,6 @@ public class ColorButton : MonoBehaviour
 {
     public int id;
 
-    ColorManager colorManager = ColorManager._instance;
-
     public void SetID(int i)
     {
         id = i;
@@ -16,7 +14,7 @@ public class ColorButton : MonoBehaviour
 
     public void SetColorID()
     {
-        colorManager.SetColorID(this.id);
+        ColorManager._instance.SetColorID(this.id);
         CanvasManager._instance.HideColorPanel();
     }
 

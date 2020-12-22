@@ -1677,6 +1677,7 @@ MonoBehaviour:
   buttonResume: {fileID: 3068923355843541097}
   pausedBackground: {fileID: 4507197860805083282}
   _typeDBInstance: {fileID: 11400000, guid: dc63cd2791550a54c9334163592c77d4, type: 2}
+  _colorDBInstance: {fileID: 11400000, guid: d2990dc05add14d479d5aa5a6381238d, type: 2}
 --- !u!1 &7337097698759788209
 GameObject:
   m_ObjectHideFlags: 0

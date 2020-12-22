@@ -17,12 +17,12 @@ public class ButtonCompleted : MonoBehaviour
     Achievement achievement;
 
     public TypeDatabase _typeDBInstance;
+    public ColorDatabase _colorDBInstance;
 
     public void InitializeButton(Achievement a)
     {
         achievement = a;
 
-        backgroundImage.sprite = ColorManager._instance.GetBigBGByID(achievement.GetColorID());
         LabelTitle.text = achievement.GetName();
         LabelDescription.text = achievement.GetDescription();
         SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
@@ -33,6 +33,7 @@ public class ButtonCompleted : MonoBehaviour
         LabelGoal.text = achievement.GetNumberOf().ToString();
         LabelObjetivo.text = "Se realizó el objetivo " + achievement.GetRepetitions() + " veces por " + _typeDBInstance.types[achievement.GetTypeOf()].singular +
                              " durante " + achievement.GetNumberOf() + " " + _typeDBInstance.types[achievement.GetTypeOf()].plural;
+        backgroundImage.sprite = _colorDBInstance.colors[achievement.GetColorID()].litBG;
 
     }
 

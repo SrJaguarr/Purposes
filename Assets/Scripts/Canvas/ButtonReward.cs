@@ -14,6 +14,9 @@ public class ButtonReward : MonoBehaviour
     [SerializeField]
     GameObject SpriteIcon;
 
+    [SerializeField]
+    ColorDatabase _colorDBinstance;
+
     Achievement achievement;
 
     public void InitializeButton(Achievement a)
@@ -21,7 +24,7 @@ public class ButtonReward : MonoBehaviour
         achievement = a;
 
         #region Main Info
-            backgroundColor.sprite = ColorManager._instance.GetLitBGByID(achievement.GetColorID());
+            backgroundColor.sprite = _colorDBinstance.colors[a.GetColorID()].litBG;
             LabelTitle.text = achievement.GetName();
             SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
             LabelReward.text = achievement.GetReward();

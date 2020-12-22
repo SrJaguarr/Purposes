@@ -234,6 +234,9 @@ public class AchievementCreator : MonoBehaviour
 
         ColorManager._instance.SetColorID(0);
 
+        CanvasManager._instance.HideColorPanel();
+        CanvasManager._instance.HideTypePanel();
+
         inputRepetitions.GetComponent<InputField>().interactable = true;
         inputNumerOf.GetComponent<InputField>().interactable = true;
         inputType.GetComponent<Button>().interactable = true;
