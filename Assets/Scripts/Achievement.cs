@@ -15,14 +15,15 @@ public class Achievement
     private readonly int type;
     private readonly int numberOf;
     private bool isAchieved;
+    private bool isPaused;
     private int progress;
     System.DateTime dateTime;
     System.DateTime lastTime;
     System.DateTime creationTime;
     System.DateTime finishTime;
 
-    public Achievement(int newID, bool newIsAchieved, string newName, string newDescription, int newIconID, int newType,int newRepetitions, int newNumberOf, 
-                        int newGlobalProgress, int newProgress, string newReward, System.DateTime newCreation, System.DateTime newTime, System.DateTime newFinishTime)
+    public Achievement(int newID, bool newIsAchieved, bool newIsPaused, string newName, string newDescription, int newIconID, int newType,int newRepetitions, int newNumberOf, 
+                        int newGlobalProgress, int newProgress, string newReward, System.DateTime newCreation, System.DateTime newTime, System.DateTime newFinishTime) //SAVED ACHIEVEMENT
     {
         id                = newID;
         name              = newName;
@@ -38,8 +39,31 @@ public class Achievement
         lastTime          = newTime;
         finishTime        = newFinishTime;
         isAchieved        = newIsAchieved;
-
+        isPaused          = newIsPaused;
         goal              = repetitions * numberOf;
+    }
+
+    public Achievement(int newID, string newName, string newDescription, int newIconID, int newType, int newRepetitions, int newNumberOf,                               //NEW ACHIEVEMENT
+                        string newReward, System.DateTime newCreation)
+    {
+        id = newID;
+        name = newName;
+        description = newDescription;
+        iconID = newIconID;
+        type = newType;
+        repetitions = newRepetitions;
+        numberOf = newNumberOf;
+        reward = newReward;
+        creationTime = newCreation;
+
+        progress = 0;
+        globalProgress = 0;
+        lastTime = System.DateTime.Now;
+        finishTime = System.DateTime.Now;
+        isAchieved = false;
+        isPaused = false;
+
+        goal = repetitions * numberOf;
     }
 
 
@@ -55,6 +79,18 @@ public class Achievement
     public void SetID(int i) => id = i;
 
     public void SetIconID(int i) => iconID = i;
+
+    public void Pause() => isPaused = true;
+
+    public void Resume()
+    {
+        isPaused = false;
+
+        if (HasChangedTime())
+            progress = 0;
+
+        lastTime = System.DateTime.Now;
+    }
 
     public int GetIconID() { return iconID; }
 
@@ -90,62 +126,52 @@ public class Achievement
 
     public System.DateTime GetCreationTime() { return creationTime; }
 
+    public void OnChangedTime()
+    {
+        if (progress < repetitions)
+            globalProgress = 0;
+
+        progress = 0;
+        lastTime = dateTime;
+        AchievementManager._instance.SaveAchievements();
+    }
+
     public bool HasChangedTime()
     {
         bool res = false;
 
-        dateTime = System.DateTime.Now;
-        switch (type)
+        if (!IsPaused())
         {
-            case 0:
-                if(dateTime.Date > lastTime.Date)
-                {
-                    if (progress < repetitions)
-                        globalProgress = 0;
-                    progress = 0;
-                    lastTime = dateTime;
-                    res = true;
-                    AchievementManager._instance.SaveAchievements();
-                }
-                break;
-            case 1:
-                if(dateTime.Date > lastTime.Date.AddDays(7))
-                {
-                    if (progress < repetitions)
-                        globalProgress = 0;
-                    progress = 0;
-                    lastTime = dateTime;
-                    res = true;
-                    AchievementManager._instance.SaveAchievements();
-                }
-                break;
-            case 2:
-                if (dateTime.Date > lastTime.Date.AddDays(30))
-                {
-                    if (progress < repetitions)
-                        globalProgress = 0;
-                    progress = 0;
-                    lastTime = dateTime;
-                    res = true;
-                    AchievementManager._instance.SaveAchievements();
-                }
-                break;
-            case 3:
-                if(dateTime.Year > lastTime.Year)
-                {
+            dateTime = System.DateTime.Now;
+            switch (type)
+            {
+                case 0:
+                    if (dateTime.Date > lastTime.Date)
+                    {
+                        res = true;
+                    }
+                    break;
+                case 1:
+                    if (dateTime.Date > lastTime.Date.AddDays(7))
+                    {
+                        res = true;
+                    }
+                    break;
+                case 2:
+                    if (dateTime.Date > lastTime.Date.AddDays(30))
+                    {
+                        res = true;
+                    }
+                    break;
+                case 3:
                     if (dateTime.Date > lastTime.Date.AddDays(365))
                     {
-                        if (progress < repetitions)
-                            globalProgress = 0;
-                        progress = 0;
-                        lastTime = dateTime;
                         res = true;
-                        AchievementManager._instance.SaveAchievements();
                     }
-                }
-                break;
+                    break;
+            }
         }
-        Debug.Log(res);
+
         return res;
     }
 
@@ -155,4 +181,8 @@ public class Achievement
 
     public System.DateTime GetFinishTime() { return finishTime; }
 
+    public bool IsPaused()
+    {
+        return isPaused;
+    }
 }

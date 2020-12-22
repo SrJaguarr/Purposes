@@ -6,6 +6,7 @@ using UnityEngine;
 public class AchievementData
 {
     public bool[]            isAchieved;
+    public bool[]            isPaused;
     public string[]          name;
     public string[]          description;
     public string[]          reward;
@@ -22,6 +23,7 @@ public class AchievementData
     public AchievementData(AchievementManager achievementManager)
     {
         isAchieved     = new bool[achievementManager.achievements.Count];
+        isPaused       = new bool[achievementManager.achievements.Count];
         name           = new string[achievementManager.achievements.Count];
         description    = new string[achievementManager.achievements.Count];
         reward         = new string[achievementManager.achievements.Count];
@@ -38,6 +40,7 @@ public class AchievementData
         for (int i = 0; i < achievementManager.achievements.Count; i++)
         {
             isAchieved[i]     = achievementManager.achievements[i].IsAchieved();
+            isPaused[i]       = achievementManager.achievements[i].IsPaused();
             name[i]           = achievementManager.achievements[i].GetName();
             description[i]    = achievementManager.achievements[i].GetDescription();
             iconID[i]         = achievementManager.achievements[i].GetIconID();

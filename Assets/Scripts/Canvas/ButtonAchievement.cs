@@ -20,6 +20,9 @@ public class ButtonAchievement : MonoBehaviour
     [SerializeField]
     Button AddButton;
 
+    [SerializeField]
+    GameObject buttonPause, buttonResume, pausedBackground;
+
     public TypeDatabase _typeDBInstance;
 
     Vector2 barSize;
@@ -44,6 +47,7 @@ public class ButtonAchievement : MonoBehaviour
         UpdateAchievement();
         if (achievement.HasChangedTime())
         {
+            achievement.OnChangedTime();
             UpdateInfo();
         }
     }
@@ -125,6 +129,14 @@ public class ButtonAchievement : MonoBehaviour
         LabelRestantes.text = (achievement.GetNumberOf() - achievement.GetGlobalProgress()) + " " + _typeDBInstance.types[achievement.GetTypeOf()].plural + " restantes";
 
         #endregion
+        #region Pause / Resume
+        if (achievement.IsPaused())
+        {
+            buttonPause.SetActive(false);
+            buttonResume.SetActive(true);
+            pausedBackground.SetActive(true);
+        }
+        #endregion
     }
     private void ResizeProgressBar()
     {
@@ -137,7 +149,7 @@ public class ButtonAchievement : MonoBehaviour
     private void ResizeProgressBarGlobal()
     {
         barSize = ProgressBarGlobal.GetComponent<RectTransform>().sizeDelta;
-        barSize.x = ((100 * achievement.GetGlobalProgress() / achievement.GetGoal()) * totalBarSizeGlobal) / 100;
+        barSize.x = ((100 * achievement.GetGlobalProgress() / achievement.GetNumberOf()) * totalBarSizeGlobal) / 100;
 
         ProgressBarGlobal.GetComponent<RectTransform>().sizeDelta = barSize;
     }
@@ -148,6 +160,22 @@ public class ButtonAchievement : MonoBehaviour
         AchievementCreator._instance.EditAchievement(achievement);
     }
 
+    public void Pause()
+    {
+        pausedBackground.SetActive(true);
+        buttonPause.SetActive(false);
+        buttonResume.SetActive(true);
+        achievement.Pause();
+    }
+
+    public void Resume()
+    {
+        pausedBackground.SetActive(false);
+        buttonPause.SetActive(true);
+        buttonResume.SetActive(false);
+        achievement.Resume();
+        UpdateInfo();
+    }
 
     public Achievement GetAchievement() { return achievement; }
 }

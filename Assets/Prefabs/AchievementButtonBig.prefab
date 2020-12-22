@@ -552,7 +552,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1849325834214513991}
-        m_MethodName: ResumeProgress
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1672,6 +1672,9 @@ MonoBehaviour:
   LabelProgress: {fileID: 8763796634842450726}
   LabelGoal: {fileID: 1066727458262796519}
   AddButton: {fileID: 7405370667377264940}
+  buttonPause: {fileID: 8880228786816688262}
+  buttonResume: {fileID: 3068923355843541097}
+  pausedBackground: {fileID: 4507197860805083282}
   _typeDBInstance: {fileID: 11400000, guid: dc63cd2791550a54c9334163592c77d4, type: 2}
 --- !u!1 &7337097698759788209
 GameObject:
@@ -2496,7 +2499,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1849325834214513991}
-        m_MethodName: PauseProgress
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
