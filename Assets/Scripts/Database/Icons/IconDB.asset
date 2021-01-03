@@ -47,3 +47,21 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 5e325f11dc7bb7e4e8c5566d9e06fb5c, type: 3}
   - id: 16
     sprite: {fileID: 21300000, guid: 1429f5a87818ef44c9de8b8b7368ae39, type: 3}
+  - id: 17
+    sprite: {fileID: 21300000, guid: 6e1dec59e1b38504c8d7db93a257c84f, type: 3}
+  - id: 18
+    sprite: {fileID: 21300000, guid: e55e62a4162de8f429965a811f84e965, type: 3}
+  - id: 19
+    sprite: {fileID: 21300000, guid: f93a278c99c49cc449ef70172aa24d37, type: 3}
+  - id: 20
+    sprite: {fileID: 21300000, guid: dc7dc656cb8b7e04cb6b87988d253c83, type: 3}
+  - id: 21
+    sprite: {fileID: 21300000, guid: 268b6e11a9ee0e146a96360aa65f9c93, type: 3}
+  - id: 22
+    sprite: {fileID: 21300000, guid: 16a9a04a24df30a4390938ec3b862c6b, type: 3}
+  - id: 23
+    sprite: {fileID: 21300000, guid: 1429f5a87818ef44c9de8b8b7368ae39, type: 3}
+  - id: 24
+    sprite: {fileID: 21300000, guid: 1e77506568d6c0545abccb8b4ece31a5, type: 3}
+  - id: 25
+    sprite: {fileID: 21300000, guid: a3f0b34167a3bc540898bc6a2f3571ea, type: 3}
