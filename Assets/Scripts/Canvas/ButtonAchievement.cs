@@ -82,7 +82,7 @@ public class ButtonAchievement : MonoBehaviour
         UpdateInfo();
     }
 
-    public void UpdateAchievement()
+    public void UpdateAchievement()        
     {
         LabelTitle.text = achievement.GetName();
         LabelDescription.text = achievement.GetDescription(); 
@@ -118,9 +118,9 @@ public class ButtonAchievement : MonoBehaviour
         achievement = a;
 
         #region Main Info
-            LabelTitle.text = achievement.GetName();                         //NOMBRE
-            LabelDescription.text = achievement.GetDescription();                         //DESCRIPTION
-            LabelID.text = "ID: " + achievement.GetID();      //ID
+            LabelTitle.text = achievement.GetName();                                                                   //NOMBRE
+            LabelDescription.text = achievement.GetDescription();                                                      //DESCRIPTION
+            LabelID.text = "ID: " + achievement.GetID();                                                               //ID
             SpriteIcon.GetComponent<Image>().sprite = IconManager._instance.GetIconByID(achievement.GetIconID());      //ICON
             LabelReward.text = achievement.GetReward();
             LabelCreationTime.text = achievement.GetCreationTime().Date.ToString();
