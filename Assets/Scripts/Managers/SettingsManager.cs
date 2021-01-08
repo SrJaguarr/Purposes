@@ -7,6 +7,8 @@ public class SettingsManager : MonoBehaviour
 {
     private void Start()
     {
-        Screen.fullScreen = false;
+        ApplicationChrome.navigationBarState = ApplicationChrome.States.Hidden;
+        ApplicationChrome.statusBarState     = ApplicationChrome.States.Visible;
+        ApplicationChrome.statusBarColor     = 0xff;
     }
 }
