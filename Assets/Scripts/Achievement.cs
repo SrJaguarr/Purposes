@@ -69,6 +69,28 @@ public class Achievement
         goal = repetitions * numberOf;
     }
 
+    public Achievement(int newID, Achievement replayAchievement)
+    {
+        id = newID;
+        name = replayAchievement.GetName();
+        description = replayAchievement.GetDescription();
+        iconID = replayAchievement.GetIconID();
+        type = replayAchievement.GetTypeOf();
+        repetitions = replayAchievement.GetRepetitions();
+        numberOf = replayAchievement.GetNumberOf();
+        reward = replayAchievement.GetReward();
+        creationTime = System.DateTime.Now;
+        colorID = replayAchievement.GetColorID();
+
+        progress = 0;
+        globalProgress = 0;
+        lastTime = System.DateTime.Now;
+        finishTime = System.DateTime.Now;
+        isAchieved = false;
+        isPaused = false;
+
+        goal = repetitions * numberOf;
+    }
 
     public void SetName(string s) => name = s;
 

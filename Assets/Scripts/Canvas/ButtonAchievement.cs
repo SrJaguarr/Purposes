@@ -24,7 +24,7 @@ public class ButtonAchievement : MonoBehaviour
     Button AddButton;
 
     [SerializeField]
-    GameObject buttonPause, buttonResume, pausedBackground;
+    GameObject buttonPause, buttonResume, buttonReplay, pausedBackground;
 
     public TypeDatabase _typeDBInstance;
     public ColorDatabase _colorDBInstance;
@@ -56,14 +56,27 @@ public class ButtonAchievement : MonoBehaviour
         }
     }
 
+    public void Replay()
+    {
+        AchievementManager._instance.RemoveButton(GetComponent<ButtonAchievement>());
+        AchievementManager._instance.ReplayAchievement(achievement);
+        DestroyButton();
+    }
+
+    private void Achieve()
+    {
+        RewardManager._instance.NewReward(achievement);
+        pausedBackground.SetActive(true);
+        achievement.Pause();
+        buttonReplay.SetActive(true);
+    }
+
     public void AddProgress()
     {
         achievement.AddProgress();
-        if (achievement.GetGlobalProgress() == achievement.GetNumberOf())
+        if (achievement.IsAchieved())
         {
-            RewardManager._instance.NewReward(achievement);
-            AchievementManager._instance.RemoveButton(GetComponent<ButtonAchievement>());
-            DestroyButton();
+            Achieve();
         }
 
         UpdateInfo();

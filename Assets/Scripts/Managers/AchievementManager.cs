@@ -52,6 +52,15 @@ public class AchievementManager : MonoBehaviour
         achievementButtons[achievementButtons.Count-1].InitializeButton(achievements[achievements.Count - 1]);
     }
 
+    public void ReplayAchievement(Achievement a)
+    {
+        achievements.Add(new Achievement(achievements.Count, a));
+
+        achievementButtons.Add(Instantiate(achievementPrefab, verticalLayout).GetComponent<ButtonAchievement>());
+
+        achievementButtons[achievementButtons.Count - 1].InitializeButton(achievements[achievements.Count - 1]);
+    }
+
     public void ReloadAchievement(AchievementData data, int n)
     {
         achievements.Add(new Achievement(achievements.Count, data.isAchieved[n], data.isPaused[n], data.name[n], data.description[n], data.iconID[n], data.colorID[n], data.type[n], data.repetitions[n],
