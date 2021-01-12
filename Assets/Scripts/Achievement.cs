@@ -43,7 +43,6 @@ public class Achievement
         isPaused          = newIsPaused;
         colorID           = newColor;
         goal              = repetitions * numberOf;
-
     }
 
     public Achievement(int newID, string newName, string newDescription, int newIconID, int newColor, int newType, int newRepetitions, int newNumberOf,                               //NEW ACHIEVEMENT
@@ -108,14 +107,15 @@ public class Achievement
 
     public void Pause() => isPaused = true;
 
-    public void Resume()
+    public void Resume() //TODO
     {
         isPaused = false;
 
-        if (HasChangedTime())
+        if(HasChangedTime())
+        {
             progress = 0;
-
-        lastTime = System.DateTime.Now;
+            lastTime = System.DateTime.Now;
+        }
     }
 
     public int GetIconID() { return iconID; }
@@ -155,7 +155,7 @@ public class Achievement
 
     public System.DateTime GetCreationTime() { return creationTime; }
 
-    public void OnChangedTime()
+    public void OnChangedTime() //TODO
     {
         if (progress < repetitions)
             globalProgress = 0;
