@@ -43,6 +43,7 @@ public class Achievement
         isPaused          = newIsPaused;
         colorID           = newColor;
         goal              = repetitions * numberOf;
+
     }
 
     public Achievement(int newID, string newName, string newDescription, int newIconID, int newColor, int newType, int newRepetitions, int newNumberOf,                               //NEW ACHIEVEMENT

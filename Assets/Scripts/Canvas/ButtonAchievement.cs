@@ -186,6 +186,7 @@ public class ButtonAchievement : MonoBehaviour
         buttonPause.SetActive(false);
         buttonResume.SetActive(true);
         achievement.Pause();
+        AchievementManager._instance.SaveAchievements();
     }
 
     public void Resume()
@@ -195,6 +196,7 @@ public class ButtonAchievement : MonoBehaviour
         buttonResume.SetActive(false);
         achievement.Resume();
         UpdateInfo();
+        AchievementManager._instance.SaveAchievements();
     }
 
     public Achievement GetAchievement() { return achievement; }
